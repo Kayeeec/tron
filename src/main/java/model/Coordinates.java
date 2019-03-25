@@ -1,3 +1,5 @@
+package model;
+
 public class Coordinates {
 
 	private int X;

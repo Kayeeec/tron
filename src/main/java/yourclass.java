@@ -1,3 +1,11 @@
+import controller.KeyListenerHandler;
+import controller.MouseListenerHandler;
+import controller.MouseMotionListenerHandler;
+import model.Coordinates;
+import model.Direction;
+import model.Keys;
+import model.Player;
+
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Window;
