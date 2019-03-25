@@ -40,21 +40,6 @@ public class yourclass extends Core {
 		new yourclass().run();
 	}
 
-	public void draw(Graphics2D g) {
-
-		updatePathAndPositions();
-
-		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, screenManager.getWidth(), screenManager.getHeight());
-
-		for (Player player : players) {
-			for (Coordinates coordinate : player.getPath()) {
-				g.setColor(player.getColor());
-				g.fillRect(coordinate.getX(), coordinate.getY(), 10, 10);
-			}
-		}
-	}
-
 	private void updatePathAndPositions() {
 
 		for (Player player : players) {
