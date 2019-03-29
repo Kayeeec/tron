@@ -1,11 +1,12 @@
 package controller;
 
-import enums.Direction;
-import model.Player;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
+
+import enums.Direction;
+import model.Keys;
+import model.Player;
 
 public class KeyListenerHandler implements KeyListener {
 
@@ -16,30 +17,37 @@ public class KeyListenerHandler implements KeyListener {
 		this.players = players;
 	}
 
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent event) {
 
 		for (Player player : players) {
-			if (e.getKeyCode() == player.getKeys().getUp()) {
-				if (player.getCurrentDirection() != Direction.DOWN) {
-					player.setCurrentDirection(Direction.UP);
+			if (player.controlledByEvent(event)) {
+				Keys playerKeys = (Keys) player.getControls();
+				
+				if (event.getKeyCode() == playerKeys.getUp()) {
+					if (player.getCurrentDirection() != Direction.DOWN) {
+						player.setCurrentDirection(Direction.UP);
+					}
+					return;
+				}
+				else if (event.getKeyCode() == playerKeys.getDown()) {
+					if (player.getCurrentDirection() != Direction.UP) {
+						player.setCurrentDirection(Direction.DOWN);
+					}
+					return;
+				}
+				else if (event.getKeyCode() == playerKeys.getRight()) {
+					if (player.getCurrentDirection() != Direction.LEFT) {
+						player.setCurrentDirection(Direction.RIGHT);
+					}
+					return;
+				}
+				else if (event.getKeyCode() == playerKeys.getLeft()) {
+					if (player.getCurrentDirection() != Direction.RIGHT) {
+						player.setCurrentDirection(Direction.LEFT);
+					}
+					return;
 				}
 			}
-			else if (e.getKeyCode() == player.getKeys().getDown()) {
-				if (player.getCurrentDirection() != Direction.UP) {
-					player.setCurrentDirection(Direction.DOWN);
-				}
-			}
-			else if (e.getKeyCode() == player.getKeys().getRight()) {
-				if (player.getCurrentDirection() != Direction.LEFT) {
-					player.setCurrentDirection(Direction.RIGHT);
-				}
-			}
-			else if (e.getKeyCode() == player.getKeys().getLeft()) {
-				if (player.getCurrentDirection() != Direction.RIGHT) {
-					player.setCurrentDirection(Direction.LEFT);
-				}
-			}
-
 		}
 
 	}
