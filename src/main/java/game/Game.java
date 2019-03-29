@@ -1,6 +1,11 @@
 package game;
 
+import view.DrawingInterface;
+import view.ScreenManagerInterface;
+
 public abstract class Game {
+	protected ScreenManagerInterface screenManager;
+	protected DrawingInterface drawManager;
 
 	private boolean running;
 

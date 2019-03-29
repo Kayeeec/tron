@@ -5,9 +5,7 @@ import model.Keys;
 import model.Mouse;
 import model.TronPlayer;
 import view.DrawManager;
-import view.DrawingInterface;
 import view.ScreenManager;
-import view.ScreenManagerInterface;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -18,8 +16,6 @@ import java.util.List;
 public class TronGame extends Game {
 
 	private List<TronPlayer> players;
-	private ScreenManagerInterface screenManager;
-	private DrawingInterface drawManager;
 
 	public TronGame() {
 
@@ -37,7 +33,6 @@ public class TronGame extends Game {
 
 	@Override
 	public void initializePresentation() {
-
 		screenManager = new ScreenManager();
 		drawManager = new DrawManager(screenManager, players);
 		screenManager.setUp(players);
