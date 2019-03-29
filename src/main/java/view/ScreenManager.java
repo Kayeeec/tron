@@ -162,9 +162,4 @@ public class ScreenManager implements ScreenManagerInterface {
 		w.addMouseMotionListener(new MouseMotionListenerHandler());
 	}
 
-	public void setFullScreen(DisplayMode dm) {
-
-		// TODO Auto-generated method stub
-
-	}
 }
