@@ -18,18 +18,14 @@ public class ScreenManager implements ScreenManagerInterface {
 			// new DisplayMode(1920,1080,32,0),
 			new DisplayMode(1680, 1050, 32, 0),
 			// new DisplayMode(1280,1024,32,0),
-			new DisplayMode(800, 600, 32, 0),
-			new DisplayMode(800, 600, 24, 0),
-			new DisplayMode(800, 600, 16, 0),
+			new DisplayMode(800, 600, 32, 0), new DisplayMode(800, 600, 24, 0), new DisplayMode(800, 600, 16, 0),
 
-			new DisplayMode(640, 480, 32, 0),
-			new DisplayMode(640, 480, 24, 0),
-			new DisplayMode(640, 480, 16, 0),
-	};
+			new DisplayMode(640, 480, 32, 0), new DisplayMode(640, 480, 24, 0), new DisplayMode(640, 480, 16, 0), };
 
 	private GraphicsDevice vc;
 
 	public ScreenManager() {
+
 		GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		vc = e.getDefaultScreenDevice();
 	}
@@ -52,8 +48,7 @@ public class ScreenManager implements ScreenManagerInterface {
 		if (m1.getWidth() != m2.getWidth() || m1.getHeight() != m2.getHeight()) {
 			return false;
 		}
-		if (m1.getBitDepth() != DisplayMode.BIT_DEPTH_MULTI
-				&& m2.getBitDepth() != DisplayMode.BIT_DEPTH_MULTI
+		if (m1.getBitDepth() != DisplayMode.BIT_DEPTH_MULTI && m2.getBitDepth() != DisplayMode.BIT_DEPTH_MULTI
 				&& m1.getBitDepth() != m2.getBitDepth()) {
 			return false;
 		}
@@ -63,6 +58,7 @@ public class ScreenManager implements ScreenManagerInterface {
 	}
 
 	private void setFullScreen() {
+
 		DisplayMode dm = this.findFirstCompatibleMode();
 
 		JFrame f = new JFrame();
@@ -80,7 +76,6 @@ public class ScreenManager implements ScreenManagerInterface {
 		}
 	}
 
-	@Override
 	public Graphics2D getGraphics() {
 
 		Window w = vc.getFullScreenWindow();
@@ -92,7 +87,6 @@ public class ScreenManager implements ScreenManagerInterface {
 		return null;
 	}
 
-	@Override
 	public void update() {
 
 		Window w = vc.getFullScreenWindow();
@@ -104,7 +98,6 @@ public class ScreenManager implements ScreenManagerInterface {
 		}
 	}
 
-	@Override
 	public int getWidth() {
 
 		Window w = vc.getFullScreenWindow();
@@ -116,7 +109,6 @@ public class ScreenManager implements ScreenManagerInterface {
 
 	}
 
-	@Override
 	public int getHeight() {
 
 		Window w = vc.getFullScreenWindow();
@@ -128,7 +120,6 @@ public class ScreenManager implements ScreenManagerInterface {
 
 	}
 
-	@Override
 	public void restoreScreen() {
 
 		Window w = vc.getFullScreenWindow();
@@ -138,20 +129,16 @@ public class ScreenManager implements ScreenManagerInterface {
 		vc.setFullScreenWindow(null);
 	}
 
-	@Override
 	public void setUp(List<Player> players) {
+
 		setFullScreen();
 		Window w = vc.getFullScreenWindow();
 
 		w.setFont(new Font("Arial", Font.PLAIN, 20));
 		w.setBackground(Color.WHITE);
 		w.setForeground(Color.RED);
-		w.setCursor(
-				w.getToolkit().createCustomCursor(
-						new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
-						new Point(0, 0), "null"
-				)
-		);
+		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
+				new Point(0, 0), "null"));
 
 		w.addKeyListener(new KeyListenerHandler(players));
 		w.addMouseListener(new MouseListenerHandler());
