@@ -87,9 +87,8 @@ public class ScreenManager implements ScreenManagerInterface {
 			BufferStrategy bs = w.getBufferStrategy();
 			return (Graphics2D) bs.getDrawGraphics();
 		}
-		else {
-			return null;
-		}
+
+		return null;
 	}
 
 	@Override
@@ -116,9 +115,9 @@ public class ScreenManager implements ScreenManagerInterface {
 		if (w != null) {
 			return w.getWidth();
 		}
-		else {
-			return 0;
-		}
+
+		return 0;
+
 	}
 
 	@Override
@@ -128,9 +127,9 @@ public class ScreenManager implements ScreenManagerInterface {
 		if (w != null) {
 			return w.getHeight();
 		}
-		else {
-			return 0;
-		}
+
+		return 0;
+
 	}
 
 	@Override
@@ -161,5 +160,11 @@ public class ScreenManager implements ScreenManagerInterface {
 		w.addKeyListener(new KeyListenerHandler(players));
 		w.addMouseListener(new MouseListenerHandler());
 		w.addMouseMotionListener(new MouseMotionListenerHandler());
+	}
+
+	public void setFullScreen(DisplayMode dm) {
+
+		// TODO Auto-generated method stub
+
 	}
 }
