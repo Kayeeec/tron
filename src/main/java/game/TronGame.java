@@ -1,4 +1,4 @@
-package model;
+package game;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -8,6 +8,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import enums.Direction;
+import model.Keys;
+import model.Mouse;
+import model.Player;
+import model.TronPlayer;
 import view.DrawManager;
 import view.DrawingInterface;
 import view.ScreenManager;
@@ -15,8 +19,7 @@ import view.ScreenManagerInterface;
 
 public class TronGame extends Game {
 
-	private List<Player> players;
-
+	private List<TronPlayer> players;
 	private ScreenManagerInterface screenManager;
 	private DrawingInterface drawManager;
 
@@ -26,11 +29,11 @@ public class TronGame extends Game {
 
 	public void initializePlayers() {
 
-		players = new LinkedList<Player>();
-		players.add(new Player(40, 40, Direction.RIGHT, Color.RED,
+		players = new LinkedList<TronPlayer>();
+		players.add(new TronPlayer(40, 40, Direction.RIGHT, Color.RED,
 				new Keys(KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT)));
-		players.add(new Player(600, 440, Direction.DOWN, Color.YELLOW, new Mouse(MouseEvent.BUTTON1, MouseEvent.BUTTON3)));
-		players.add(new Player(400, 540, Direction.LEFT, Color.BLUE,
+		players.add(new TronPlayer(600, 440, Direction.DOWN, Color.YELLOW, new Mouse(MouseEvent.BUTTON1, MouseEvent.BUTTON3)));
+		players.add(new TronPlayer(400, 540, Direction.LEFT, Color.BLUE,
 				new Keys(KeyEvent.VK_U, KeyEvent.VK_H, KeyEvent.VK_J, KeyEvent.VK_K)));
 	}
 
@@ -51,7 +54,7 @@ public class TronGame extends Game {
 
 	private void updateTronPlayerPositions() {
 
-		for (Player player : players) {
+		for (TronPlayer player : players) {
 			int moveAmount = 5;
 			switch (player.getCurrentDirection()) {
 			case UP:
@@ -98,8 +101,8 @@ public class TronGame extends Game {
 
 	private boolean hasPlayersInCollision() {
 
-		for (Player playerA : players) {
-			for (Player playerB : players) {
+		for (TronPlayer playerA : players) {
+			for (TronPlayer playerB : players) {
 				if (playerA.isInCollisionWith(playerB)) {
 					return true;
 
@@ -119,7 +122,7 @@ public class TronGame extends Game {
 
 	private void updateTronPlayersHistory() {
 
-		for (Player player : players) {
+		for (TronPlayer player : players) {
 			player.appendPath(player.getCentreX(), player.getCentreY());
 		}
 	}

@@ -1,16 +1,16 @@
 package view;
 
-import model.Coordinates;
-import model.Player;
+import model.TwoDimensionalCoordinates;
+import model.TronPlayer;
 import java.awt.*;
 import java.util.List;
 
 public class DrawManager implements DrawingInterface {
 
 	private ScreenManagerInterface screenManager;
-	private List<Player> players;
+	private List<TronPlayer> players;
 
-	public DrawManager(ScreenManagerInterface screenManager, List<Player> players) {
+	public DrawManager(ScreenManagerInterface screenManager, List<TronPlayer> players) {
 
 		this.screenManager = screenManager;
 		this.players = players;
@@ -21,8 +21,8 @@ public class DrawManager implements DrawingInterface {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, screenManager.getWidth(), screenManager.getHeight());
 
-		for (Player player : players) {
-			for (Coordinates coordinate : player.getPath()) {
+		for (TronPlayer player : players) {
+			for (TwoDimensionalCoordinates coordinate : player.getPath()) {
 				g.setColor(player.getColor());
 				g.fillRect(coordinate.getX(), coordinate.getY(), 10, 10);
 			}

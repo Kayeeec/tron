@@ -2,7 +2,7 @@ package controller;
 
 import enums.Direction;
 import model.Mouse;
-import model.Player;
+import model.TronPlayer;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,12 +13,12 @@ import java.util.Map;
 
 public class MouseListenerHandler implements MouseListener {
 
-	private List<Player> players;
+	private List<TronPlayer> players;
 
 	private static Map<Direction, Direction> left = new HashMap<Direction, Direction>();
 	private static Map<Direction, Direction> right = new HashMap<Direction, Direction>();
 
-	public MouseListenerHandler(List<Player> players) {
+	public MouseListenerHandler(List<TronPlayer> players) {
 		this.players = players;
 
 		left.put(Direction.DOWN, Direction.RIGHT);
@@ -33,9 +33,9 @@ public class MouseListenerHandler implements MouseListener {
 
 	}
 
-	private List<Player> getPlayersForEvent(MouseEvent e) {
-		ArrayList<Player> result = new ArrayList<Player>();
-		for (Player player: this.players) {
+	private List<TronPlayer> getPlayersForEvent(MouseEvent e) {
+		ArrayList<TronPlayer> result = new ArrayList<TronPlayer>();
+		for (TronPlayer player: this.players) {
 			if(player.controlledByEvent(e)){
 				result.add(player);
 			}
@@ -44,8 +44,8 @@ public class MouseListenerHandler implements MouseListener {
 	}
 
 	public void mouseClicked(MouseEvent e) {
-		List<Player> players = getPlayersForEvent(e);
-		for (Player player : players){
+		List<TronPlayer> players = getPlayersForEvent(e);
+		for (TronPlayer player : players){
 			Mouse controls = (Mouse) player.getControls();
 			Direction currentDirection = player.getCurrentDirection();
             int button = e.getButton();

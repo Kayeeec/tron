@@ -1,5 +1,5 @@
-import model.Game;
-import model.TronGame;
+import game.Game;
+import game.TronGame;
 
 public class Core {
 

@@ -2,7 +2,7 @@ package view;
 
 import controller.KeyListenerHandler;
 import controller.MouseListenerHandler;
-import model.Player;
+import model.TronPlayer;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
@@ -132,7 +132,7 @@ public class ScreenManager implements ScreenManagerInterface {
 		vc.setFullScreenWindow(null);
 	}
 
-	public void setUp(List<Player> players) {
+	public void setUp(List<TronPlayer> players) {
 
 		setFullScreen();
 		Window w = vc.getFullScreenWindow();
