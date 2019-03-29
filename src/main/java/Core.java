@@ -64,7 +64,6 @@ public class Core {
 				new Point(0, 0), "null"));
 		running = true;
 
-
 		players = new LinkedList<Player>();
 		players.add(new Player(40, 40, Direction.RIGHT, Color.RED,
 				new Keys(KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT)));
@@ -81,86 +80,111 @@ public class Core {
 
 	public void gameLoop() {
 
-		long startTime = System.currentTimeMillis();
-		long cumTime = startTime;
-
 		while (running) {
-			long timePassed = System.currentTimeMillis() - cumTime;
-			cumTime += timePassed;
-			update(timePassed);
-			Graphics2D g = screenManager.getGraphics();
-			updatePathAndPositions();
-			drawManager.draw(g);
-			g.dispose();
-			screenManager.update();
+			updatePositions();
 
-			try {
-				Thread.sleep(20);
-			} catch (Exception ex) {
-			}
+			updateGameStatus();
+
+			updateHistory();
+
+			reDraw();
+
+			pause();
+		}
+
+		endGame();
+	}
+
+	private void reDraw() {
+
+		Graphics2D g = screenManager.getGraphics();
+		drawManager.draw(g);
+		g.dispose();
+		screenManager.update();
+	}
+
+	private void pause() {
+
+		try {
+			Thread.sleep(20);
+		} catch (Exception ex) {
 		}
 	}
 
-	public void update(long timePassed) {
+	public void updatePositions() {
 
+		updateTronPlayerPositions();
 	}
 
-	private void updatePathAndPositions() {
+	private void updateTronPlayerPositions() {
 
 		for (Player player : players) {
 			switch (player.getCurrentDirection()) {
-				case UP:
-					if (player.getCentreY() > 0) {
-						player.setCentreY(player.getCentreY() - moveAmount);
-					}
-					else {
-						player.setCentreY(screenManager.getHeight());
-					}
-					break;
-				case RIGHT:
-					if (player.getCentreX() < screenManager.getWidth()) {
-						player.setCentreX(player.getCentreX() + moveAmount);
-					}
-					else {
-						player.setCentreX(0);
-					}
-					break;
-				case DOWN:
-					if (player.getCentreY() < screenManager.getHeight()) {
-						player.setCentreY(player.getCentreY() + moveAmount);
-					}
-					else {
-						player.setCentreY(0);
-					}
-					break;
-				case LEFT:
-					if (player.getCentreX() > 0) {
-						player.setCentreX(player.getCentreX() - moveAmount);
-					}
-					else {
-						player.setCentreX(screenManager.getWidth());
-					}
-					break;
+			case UP:
+				if (player.getCentreY() > 0) {
+					player.setCentreY(player.getCentreY() - moveAmount);
+				}
+				else {
+					player.setCentreY(screenManager.getHeight());
+				}
+				break;
+			case RIGHT:
+				if (player.getCentreX() < screenManager.getWidth()) {
+					player.setCentreX(player.getCentreX() + moveAmount);
+				}
+				else {
+					player.setCentreX(0);
+				}
+				break;
+			case DOWN:
+				if (player.getCentreY() < screenManager.getHeight()) {
+					player.setCentreY(player.getCentreY() + moveAmount);
+				}
+				else {
+					player.setCentreY(0);
+				}
+				break;
+			case LEFT:
+				if (player.getCentreX() > 0) {
+					player.setCentreX(player.getCentreX() - moveAmount);
+				}
+				else {
+					player.setCentreX(screenManager.getWidth());
+				}
+				break;
 			}
 
 		}
 
-		exitOnCollision();
+	}
+
+	private void updateHistory() {
+
+		updateTronPlayersHistory();
+	}
+
+	private void updateTronPlayersHistory() {
 
 		for (Player player : players) {
 			player.appendPath(player.getCentreX(), player.getCentreY());
 		}
 	}
 
+	private boolean shouldGameEnd() {
 
+		return hasPlayersInCollision();
+	}
 
+	private void endGame() {
 
-	private void exitOnCollision() {
+		System.exit(0);
+	}
 
-		if (hasPlayersInCollision()) {
-			System.exit(0);
+	private void updateGameStatus() {
+
+		if (shouldGameEnd()) {
+			running = false;
 		}
-
 	}
 
 	private boolean hasPlayersInCollision() {

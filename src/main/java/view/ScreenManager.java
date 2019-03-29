@@ -80,9 +80,8 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 			BufferStrategy bs = w.getBufferStrategy();
 			return (Graphics2D) bs.getDrawGraphics();
 		}
-		else {
-			return null;
-		}
+
+		return null;
 	}
 
 	public void update() {
@@ -107,9 +106,9 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		if (w != null) {
 			return w.getWidth();
 		}
-		else {
-			return 0;
-		}
+
+		return 0;
+
 	}
 
 	public int getHeight() {
@@ -118,9 +117,9 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		if (w != null) {
 			return w.getHeight();
 		}
-		else {
-			return 0;
-		}
+
+		return 0;
+
 	}
 
 	public void restoreScreen() {
@@ -139,9 +138,7 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 			GraphicsConfiguration gc = win.getGraphicsConfiguration();
 			return gc.createCompatibleImage(w, h, t);
 		}
-		else {
-			return null;
-		}
+		return null;
 
 	}
 
