@@ -33,6 +33,15 @@ public class TronGame extends Game {
 	}
 
 	@Override
+	public void initializePresentation() {
+
+		screenManager = new ScreenManager();
+		drawManager = new DrawManager(screenManager, players);
+		screenManager.setUp(players);
+
+	}
+
+	@Override
 	public void updatePositions() {
 
 		updateTronPlayerPositions();
@@ -126,15 +135,6 @@ public class TronGame extends Game {
 	public void endGame() {
 
 		System.exit(0);
-
-	}
-
-	@Override
-	public void initializePresentation() {
-
-		screenManager = new ScreenManager();
-		drawManager = new DrawManager(screenManager, players);
-		screenManager.setUp(players);
 
 	}
 
