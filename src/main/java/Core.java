@@ -1,6 +1,9 @@
-import controller.KeyListenerHandler;
-import controller.MouseListenerHandler;
-import controller.MouseMotionListenerHandler;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.util.LinkedList;
+import java.util.List;
+
 import model.Direction;
 import model.Keys;
 import model.Player;
@@ -8,27 +11,13 @@ import view.DrawManager;
 import view.DrawingInterface;
 import view.ScreenManager;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
-import java.util.LinkedList;
-import java.util.List;
-
 public class Core {
-
-	private static final DisplayMode modes[] = {
-			// new DisplayMode(1920,1080,32,0),
-			new DisplayMode(1680, 1050, 32, 0),
-			// new DisplayMode(1280,1024,32,0),
-			new DisplayMode(800, 600, 32, 0), new DisplayMode(800, 600, 24, 0), new DisplayMode(800, 600, 16, 0),
-			new DisplayMode(640, 480, 32, 0), new DisplayMode(640, 480, 24, 0), new DisplayMode(640, 480, 16, 0), };
 
 	private boolean running;
 
-	protected ScreenManager screenManager;
+	private ScreenManager screenManager;
 
-	List<Player> players;
-	private static int moveAmount = 5;
+	private List<Player> players;
 	private DrawingInterface drawManager;
 
 	public static void main(String[] args) {
@@ -52,30 +41,19 @@ public class Core {
 	}
 
 	public void init() {
-
+		initializePlayers();
 		screenManager = new ScreenManager();
-		DisplayMode dm = screenManager.findFirstCompatibaleMode(modes);
-		screenManager.setFullScreen(dm);
-		Window w = screenManager.getFullScreenWindow();
-		w.setFont(new Font("Arial", Font.PLAIN, 20));
-		w.setBackground(Color.WHITE);
-		w.setForeground(Color.RED);
-		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
-				new Point(0, 0), "null"));
+		drawManager = new DrawManager(screenManager, players);
+		screenManager.setUp(players);
 		running = true;
+	}
 
+	private void initializePlayers() {
 		players = new LinkedList<Player>();
 		players.add(new Player(40, 40, Direction.RIGHT, Color.RED,
 				new Keys(KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT)));
 		players.add(new Player(600, 440, Direction.DOWN, Color.YELLOW,
 				new Keys(KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D)));
-
-		drawManager = new DrawManager(screenManager, players);
-
-		w = screenManager.getFullScreenWindow();
-		w.addKeyListener(new KeyListenerHandler(players));
-		w.addMouseListener(new MouseListenerHandler());
-		w.addMouseMotionListener(new MouseMotionListenerHandler());
 	}
 
 	public void gameLoop() {
@@ -119,6 +97,7 @@ public class Core {
 	private void updateTronPlayerPositions() {
 
 		for (Player player : players) {
+			int moveAmount = 5;
 			switch (player.getCurrentDirection()) {
 			case UP:
 				if (player.getCentreY() > 0) {

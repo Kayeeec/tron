@@ -1,11 +1,12 @@
 package view;
 
-import java.awt.*;
+import java.awt.DisplayMode;
+import java.awt.Graphics2D;
 
 public interface ScreenFeaturesInterface {
     DisplayMode[] getCompatibleDisplayModes();
 
-    DisplayMode findFirstCompatibaleMode(DisplayMode[] modes);
+    DisplayMode findFirstCompatibaleMode();
 
     DisplayMode getCurrentDM();
 

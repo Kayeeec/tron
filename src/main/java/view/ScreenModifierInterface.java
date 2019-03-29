@@ -1,11 +1,10 @@
 package view;
 
-import java.awt.*;
-
 public interface ScreenModifierInterface {
-    void setFullScreen(DisplayMode dm);
 
-    void update();
+	void setFullScreen();
 
-    void restoreScreen();
+	void update();
+
+	void restoreScreen();
 }
