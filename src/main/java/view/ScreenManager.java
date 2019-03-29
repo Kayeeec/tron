@@ -12,9 +12,9 @@ import java.util.List;
 
 import javax.swing.JFrame;
 
-public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInterface {
+public class ScreenManager implements ScreenManagerInterface {
 
-	private static final DisplayMode modes[] = {
+	private static final DisplayMode[] modes = {
 			// new DisplayMode(1920,1080,32,0),
 			new DisplayMode(1680, 1050, 32, 0),
 			// new DisplayMode(1280,1024,32,0),
@@ -30,32 +30,21 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 	private GraphicsDevice vc;
 
 	public ScreenManager() {
-
 		GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		vc = e.getDefaultScreenDevice();
 	}
 
-	public DisplayMode[] getCompatibleDisplayModes() {
+	private DisplayMode findFirstCompatibleMode() {
 
-		return vc.getDisplayModes();
-	}
-
-	public DisplayMode findFirstCompatibaleMode() {
-
-		DisplayMode goodModes[] = vc.getDisplayModes();
-		for (int x = 0; x < modes.length; x++) {
-			for (int y = 0; y < goodModes.length; y++) {
-				if (displayModesMatch(modes[x], goodModes[y])) {
-					return modes[x];
+		DisplayMode[] goodModes = vc.getDisplayModes();
+		for (DisplayMode mode : modes) {
+			for (DisplayMode goodMode : goodModes) {
+				if (displayModesMatch(mode, goodMode)) {
+					return mode;
 				}
 			}
 		}
 		return null;
-	}
-
-	public DisplayMode getCurrentDM() {
-
-		return vc.getDisplayMode();
 	}
 
 	private boolean displayModesMatch(DisplayMode m1, DisplayMode m2) {
@@ -67,16 +56,13 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 				&& m1.getBitDepth() != m2.getBitDepth()) {
 			return false;
 		}
-		if (m1.getRefreshRate() != DisplayMode.REFRESH_RATE_UNKNOWN
-				&& m2.getRefreshRate() != DisplayMode.REFRESH_RATE_UNKNOWN
-				&& m1.getRefreshRate() != m2.getRefreshRate()) {
-			return false;
-		}
-		return true;
+		return m1.getRefreshRate() == DisplayMode.REFRESH_RATE_UNKNOWN
+				|| m2.getRefreshRate() == DisplayMode.REFRESH_RATE_UNKNOWN
+				|| m1.getRefreshRate() == m2.getRefreshRate();
 	}
 
-	public void setFullScreen() {
-		DisplayMode dm = this.findFirstCompatibaleMode();
+	private void setFullScreen() {
+		DisplayMode dm = this.findFirstCompatibleMode();
 
 		JFrame f = new JFrame();
 		f.setUndecorated(true);
@@ -87,12 +73,13 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		if (dm != null && vc.isDisplayChangeSupported()) {
 			try {
 				vc.setDisplayMode(dm);
-			} catch (Exception ex) {
+			} catch (Exception ignored) {
 			}
 			f.createBufferStrategy(2);
 		}
 	}
 
+	@Override
 	public Graphics2D getGraphics() {
 
 		Window w = vc.getFullScreenWindow();
@@ -105,6 +92,7 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		}
 	}
 
+	@Override
 	public void update() {
 
 		Window w = vc.getFullScreenWindow();
@@ -116,11 +104,12 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		}
 	}
 
-	public Window getFullScreenWindow() {
+	private Window getFullScreenWindow() {
 
 		return vc.getFullScreenWindow();
 	}
 
+	@Override
 	public int getWidth() {
 
 		Window w = vc.getFullScreenWindow();
@@ -132,6 +121,7 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		}
 	}
 
+	@Override
 	public int getHeight() {
 
 		Window w = vc.getFullScreenWindow();
@@ -143,6 +133,7 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		}
 	}
 
+	@Override
 	public void restoreScreen() {
 
 		Window w = vc.getFullScreenWindow();
@@ -152,19 +143,7 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		vc.setFullScreenWindow(null);
 	}
 
-	public BufferedImage createCompatibaleimage(int w, int h, int t) {
-
-		Window win = vc.getFullScreenWindow();
-		if (win != null) {
-			GraphicsConfiguration gc = win.getGraphicsConfiguration();
-			return gc.createCompatibleImage(w, h, t);
-		}
-		else {
-			return null;
-		}
-
-	}
-
+	@Override
 	public void setUp(List<Player> players) {
 		setFullScreen();
 		Window w = getFullScreenWindow();
