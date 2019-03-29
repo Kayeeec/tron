@@ -111,35 +111,30 @@ public class Player {
 	}
 
 	public boolean isInCollisionWith(Player playerB) {
+
 		if (!this.equals(playerB)) {
 			for (int i = 0; i < this.getPath().size(); i++) {
-				Coordinates coordA  = this.getCoordinateAt(i);
+				Coordinates coordA = this.getCoordinateAt(i);
 				Coordinates coordB = playerB.getCoordinateAt(i);
-				if ( isColliding(playerB, coordA, coordB)) {
-						return true;
-					}
+				if (isColliding(playerB, coordA, coordB)) {
+					return true;
+				}
 			}
 		}
-		
+
 		return false;
 	}
 
 	private boolean isColliding(Player playerB, Coordinates coordA, Coordinates coordB) {
 
 		return ((this.getCentreX() == coordA.getX()) && (this.getCentreY() == coordA.getY()))
-			|| ((playerB.getCentreX() == coordB.getX()) && (playerB.getCentreY() == coordB.getY()))
-			|| ((this.getCentreX() == coordB.getX()) && (this.getCentreY() == coordB.getY()))
-			|| ((playerB.getCentreX() == coordA.getX()) && (playerB.getCentreY() == coordA.getY()));
+				|| ((playerB.getCentreX() == coordB.getX()) && (playerB.getCentreY() == coordB.getY()))
+				|| ((this.getCentreX() == coordB.getX()) && (this.getCentreY() == coordB.getY()))
+				|| ((playerB.getCentreX() == coordA.getX()) && (playerB.getCentreY() == coordA.getY()));
 	}
 
 	public boolean controlledByEvent(InputEvent event){
 		return this.controls.hasInputEvent(event);
 	}
 
-	/**
-	 * private static int centrex1 = 40; private static int centrey1 = 40; private
-	 * static int centrex2 = 600; private static int centrey2 = 440; private static
-	 * int currentDirection1 = 1; private static int currentDirection2 = 3; private
-	 * static int moveAmount = 5;
-	 */
 }
