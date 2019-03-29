@@ -6,27 +6,27 @@ import java.awt.event.MouseEvent;
 import java.util.Objects;
 
 public class Mouse extends Controls {
-    private int left = MouseEvent.BUTTON1;
-    private int right = MouseEvent.BUTTON3;
+    private MouseEvent left;
+    private MouseEvent right;
 
-    public Mouse(int left, int right) {
+    public Mouse(MouseEvent left, MouseEvent right) {
         this.left = left;
         this.right = right;
     }
 
-    public int getLeft() {
+    public MouseEvent getLeft() {
         return left;
     }
 
-    public void setLeft(int left) {
+    public void setLeft(MouseEvent left) {
         this.left = left;
     }
 
-    public int getRight() {
+    public MouseEvent getRight() {
         return right;
     }
 
-    public void setRight(int right) {
+    public void setRight(MouseEvent right) {
         this.right = right;
     }
 
@@ -35,8 +35,8 @@ public class Mouse extends Controls {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Mouse mouse = (Mouse) o;
-        return left == mouse.left &&
-                right == mouse.right;
+        return left.equals(mouse.left) &&
+                right.equals(mouse.right);
     }
 
     @Override
