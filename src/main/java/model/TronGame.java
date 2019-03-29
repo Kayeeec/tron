@@ -6,26 +6,30 @@ import java.util.LinkedList;
 import java.util.List;
 
 import view.DrawManager;
+import view.DrawingInterface;
 import view.ScreenManager;
+import view.ScreenManagerInterface;
 
 public class TronGame extends Game {
 
 	private List<Player> players;
-	
+
 	private ScreenManagerInterface screenManager;
-	
+	private DrawingInterface drawManager;
+
 	public TronGame() {
-		
+
 	}
-	
+
 	public void initializePlayers() {
+
 		players = new LinkedList<Player>();
 		players.add(new Player(40, 40, Direction.RIGHT, Color.RED,
 				new Keys(KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT)));
 		players.add(new Player(600, 440, Direction.DOWN, Color.YELLOW,
 				new Keys(KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D)));
 	}
-	
+
 	@Override
 	public void updatePositions() {
 
@@ -77,11 +81,11 @@ public class TronGame extends Game {
 
 	@Override
 	public void updateGameStatus() {
+
 		if (shouldGameEnd()) {
 			this.setRunning(false);
 		}
 	}
-	
 
 	private boolean shouldGameEnd() {
 
@@ -102,7 +106,6 @@ public class TronGame extends Game {
 		return false;
 	}
 
-
 	@Override
 	public void updateHistory() {
 
@@ -121,15 +124,16 @@ public class TronGame extends Game {
 	public void endGame() {
 
 		System.exit(0);
-		
+
 	}
 
 	@Override
 	public void initializeScreenManager() {
+
 		screenManager = new ScreenManager();
 		drawManager = new DrawManager(screenManager, players);
 		screenManager.setUp(players);
-		
+
 	}
 
 }
