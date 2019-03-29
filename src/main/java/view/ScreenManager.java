@@ -2,7 +2,6 @@ package view;
 
 import controller.KeyListenerHandler;
 import controller.MouseListenerHandler;
-import controller.MouseMotionListenerHandler;
 import model.Player;
 
 import java.awt.*;
@@ -141,8 +140,7 @@ public class ScreenManager implements ScreenManagerInterface {
 				new Point(0, 0), "null"));
 
 		w.addKeyListener(new KeyListenerHandler(players));
-		w.addMouseListener(new MouseListenerHandler());
-		w.addMouseMotionListener(new MouseMotionListenerHandler());
+		w.addMouseListener(new MouseListenerHandler(players));
 	}
 
 }

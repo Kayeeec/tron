@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 
 public class Keys extends Controls {
 
@@ -65,9 +66,12 @@ public class Keys extends Controls {
 
 	@Override
 	public boolean hasInputEvent(InputEvent event) {
-		return event.equals(this.down)
-				|| event.equals(this.up)
-				|| event.equals(this.left)
-				|| event.equals(this.right);
+		if( event instanceof KeyEvent){
+			return event.equals(this.down)
+					|| event.equals(this.up)
+					|| event.equals(this.left)
+					|| event.equals(this.right);
+		}
+		return false;
 	}
 }

@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Objects;
 
@@ -45,6 +46,9 @@ public class Mouse extends Controls {
 
     @Override
     public boolean hasInputEvent(InputEvent event) {
-        return event.equals(left) || event.equals(right);
+        if( event instanceof MouseEvent) {
+            return event.equals(left) || event.equals(right);
+        }
+        return false;
     }
 }
