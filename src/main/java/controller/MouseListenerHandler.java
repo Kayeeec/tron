@@ -15,8 +15,8 @@ public class MouseListenerHandler implements MouseListener {
 
 	private List<Player> players;
 
-	private static Map<Direction, Direction> left = new HashMap<>();
-	private static Map<Direction, Direction> right = new HashMap<>();
+	private static Map<Direction, Direction> left = new HashMap<Direction, Direction>();
+	private static Map<Direction, Direction> right = new HashMap<Direction, Direction>();
 
 	public MouseListenerHandler(List<Player> players) {
 		this.players = players;
@@ -34,7 +34,7 @@ public class MouseListenerHandler implements MouseListener {
 	}
 
 	private List<Player> getPlayersForEvent(MouseEvent e) {
-		ArrayList<Player> result = new ArrayList<>();
+		ArrayList<Player> result = new ArrayList<Player>();
 		for (Player player: this.players) {
 			if(player.controlledByEvent(e)){
 				result.add(player);
