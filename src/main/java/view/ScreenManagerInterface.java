@@ -6,15 +6,16 @@ import java.awt.*;
 import java.util.List;
 
 public interface ScreenManagerInterface {
-    Graphics2D getGraphics();
 
-    void update();
+	Graphics2D getGraphics();
 
-    int getWidth();
+	void update();
 
-    int getHeight();
+	int getWidth();
 
-    void restoreScreen();
+	int getHeight();
 
-    void setUp(List<Player> players);
+	void restoreScreen();
+
+	void setUp(List<Player> players);
 }

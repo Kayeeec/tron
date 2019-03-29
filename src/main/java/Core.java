@@ -22,15 +22,10 @@ public class Core {
 
 	public void init() {
 
-		initializeGame();
-		game.initializePlayers();
-		game.initializePresentation();
-	}
-
-	private void initializeGame() {
-
 		game = new TronGame();
 		game.setRunning(true);
+		game.initializePlayers();
+		game.initializePresentation();
 	}
 
 	public void gameLoop() {
