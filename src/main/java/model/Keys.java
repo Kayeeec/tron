@@ -67,10 +67,11 @@ public class Keys extends Controls {
 	@Override
 	public boolean hasInputEvent(InputEvent event) {
 		if( event instanceof KeyEvent){
-			return event.equals(this.down)
-					|| event.equals(this.up)
-					|| event.equals(this.left)
-					|| event.equals(this.right);
+			int keyCode = ((KeyEvent) event).getKeyCode();
+			return keyCode == this.down
+					|| keyCode == this.up
+					|| keyCode == this.left
+					|| keyCode == this.right;
 		}
 		return false;
 	}
