@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 
 public class ScreenManager implements ScreenManagerInterface {
 
+	private static final Font font = new Font("Arial", Font.PLAIN, 20);
+	
 	private static final DisplayMode[] DISPLAY_MODES = {
 			// new DisplayMode(1920,1080,32,0),
 			new DisplayMode(1680, 1050, 32, 0),
@@ -137,11 +139,13 @@ public class ScreenManager implements ScreenManagerInterface {
 		setFullScreen();
 		Window w = vc.getFullScreenWindow();
 
-		w.setFont(new Font("Arial", Font.PLAIN, 20));
+		w.setFont(font);
 		w.setBackground(Color.WHITE);
 		w.setForeground(Color.RED);
-		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
-				new Point(0, 0), "null"));
+		w.setCursor(w.getToolkit().createCustomCursor(
+				new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
+				new Point(0, 0), "null")
+			);
 
 		w.addKeyListener(new KeyListenerHandler(players));
 		w.addMouseListener(new MouseListenerHandler(players));
