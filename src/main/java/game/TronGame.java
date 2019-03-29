@@ -1,21 +1,19 @@
 package game;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.util.LinkedList;
-import java.util.List;
-
 import enums.Direction;
 import model.Keys;
 import model.Mouse;
-import model.Player;
 import model.TronPlayer;
 import view.DrawManager;
 import view.DrawingInterface;
 import view.ScreenManager;
 import view.ScreenManagerInterface;
+
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+import java.util.List;
 
 public class TronGame extends Game {
 

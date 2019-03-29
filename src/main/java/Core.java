@@ -10,7 +10,7 @@ public class Core {
 		new Core().run();
 	}
 
-	public void run() {
+	private void run() {
 
 		try {
 			init();
@@ -20,7 +20,7 @@ public class Core {
 		}
 	}
 
-	public void init() {
+	private void init() {
 
 		game = new TronGame();
 		game.initializePlayers();
@@ -28,7 +28,7 @@ public class Core {
 		game.setRunning(true);
 	}
 
-	public void gameLoop() {
+	private void gameLoop() {
 
 		while (game.isRunning()) {
 			game.updatePositions();
@@ -51,7 +51,8 @@ public class Core {
 
 		try {
 			Thread.sleep(20);
-		} catch (Exception ex) {
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

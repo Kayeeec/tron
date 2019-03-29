@@ -4,12 +4,11 @@ import controller.KeyListenerHandler;
 import controller.MouseListenerHandler;
 import model.TronPlayer;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.List;
-
-import javax.swing.JFrame;
 
 public class ScreenManager implements ScreenManagerInterface {
 
@@ -25,7 +24,7 @@ public class ScreenManager implements ScreenManagerInterface {
 			new DisplayMode(640, 480, 16, 0),
 		};
 
-	private GraphicsDevice vc;
+	private final GraphicsDevice vc;
 
 	public ScreenManager() {
 

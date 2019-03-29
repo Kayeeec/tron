@@ -5,10 +5,10 @@ import java.awt.event.KeyEvent;
 
 public class Keys extends Controls {
 
-	private int up;
-	private int down;
-	private int left;
-	private int right;
+	private final int up;
+	private final int down;
+	private final int left;
+	private final int right;
 
 	public Keys(int up, int down, int left, int right) {
 
@@ -60,8 +60,7 @@ public class Keys extends Controls {
 		if (down != other.down) return false;
 		if (left != other.left) return false;
 		if (right != other.right) return false;
-		if (up != other.up) return false;
-		return true;
+		return up == other.up;
 	}
 
 	@Override

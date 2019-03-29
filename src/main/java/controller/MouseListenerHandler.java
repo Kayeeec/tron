@@ -13,10 +13,10 @@ import java.util.Map;
 
 public class MouseListenerHandler implements MouseListener {
 
-	private List<TronPlayer> players;
+	private final List<TronPlayer> players;
 
-	private static Map<Direction, Direction> left = new HashMap<Direction, Direction>();
-	private static Map<Direction, Direction> right = new HashMap<Direction, Direction>();
+	private static final Map<Direction, Direction> left = new HashMap<Direction, Direction>();
+	private static final Map<Direction, Direction> right = new HashMap<Direction, Direction>();
 
 	public MouseListenerHandler(List<TronPlayer> players) {
 		this.players = players;

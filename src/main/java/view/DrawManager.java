@@ -1,14 +1,15 @@
 package view;
 
-import model.TwoDimensionalCoordinates;
 import model.TronPlayer;
+import model.TwoDimensionalCoordinates;
+
 import java.awt.*;
 import java.util.List;
 
 public class DrawManager implements DrawingInterface {
 
-	private ScreenManagerInterface screenManager;
-	private List<TronPlayer> players;
+	private final ScreenManagerInterface screenManager;
+	private final List<TronPlayer> players;
 
 	public DrawManager(ScreenManagerInterface screenManager, List<TronPlayer> players) {
 

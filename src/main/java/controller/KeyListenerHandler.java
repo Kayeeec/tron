@@ -1,16 +1,16 @@
 package controller;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.List;
-
 import enums.Direction;
 import model.Keys;
 import model.TronPlayer;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.List;
+
 public class KeyListenerHandler implements KeyListener {
 
-	private List<TronPlayer> players;
+	private final List<TronPlayer> players;
 
 	public KeyListenerHandler(List<TronPlayer> players) {
 

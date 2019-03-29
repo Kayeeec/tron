@@ -2,7 +2,7 @@ package model;
 
 import enums.Direction;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +13,7 @@ public class TronPlayer extends Player {
 	private int centreY;
 	private Direction currentDirection;
 
-	List<TwoDimensionalCoordinates> path = new ArrayList<TwoDimensionalCoordinates>();
+	private final List<TwoDimensionalCoordinates> path = new ArrayList<TwoDimensionalCoordinates>();
 
 	public TronPlayer(int X, int Y, Direction direction, Color color, Controls controls) {
 		super(color, controls);
@@ -63,7 +63,7 @@ public class TronPlayer extends Player {
 		return Collections.unmodifiableList(this.path);
 	}
 
-	public TwoDimensionalCoordinates getCoordinateAt(int index) {
+	private TwoDimensionalCoordinates getCoordinateAt(int index) {
 
 		return this.path.get(index);
 	}
@@ -85,10 +85,9 @@ public class TronPlayer extends Player {
 		if (getClass() != obj.getClass()) return false;
 		TronPlayer other = (TronPlayer) obj;
 		if (getColor() == null) {
-			if (other.getColor() != null) return false;
+			return other.getColor() == null;
 		}
-		else if (!getColor().equals(other.getColor())) return false;
-		return true;
+		else return getColor().equals(other.getColor());
 	}
 
 	public boolean isInCollisionWith(TronPlayer playerB) {
