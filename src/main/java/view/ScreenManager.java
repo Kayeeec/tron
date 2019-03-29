@@ -1,12 +1,31 @@
 package view;
 
+import controller.KeyListenerHandler;
+import controller.MouseListenerHandler;
+import controller.MouseMotionListenerHandler;
+import model.Player;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 import javax.swing.JFrame;
 
 public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInterface {
+
+	private static final DisplayMode modes[] = {
+			// new DisplayMode(1920,1080,32,0),
+			new DisplayMode(1680, 1050, 32, 0),
+			// new DisplayMode(1280,1024,32,0),
+			new DisplayMode(800, 600, 32, 0),
+			new DisplayMode(800, 600, 24, 0),
+			new DisplayMode(800, 600, 16, 0),
+
+			new DisplayMode(640, 480, 32, 0),
+			new DisplayMode(640, 480, 24, 0),
+			new DisplayMode(640, 480, 16, 0),
+	};
 
 	private GraphicsDevice vc;
 
@@ -21,7 +40,7 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		return vc.getDisplayModes();
 	}
 
-	public DisplayMode findFirstCompatibaleMode(DisplayMode[] modes) {
+	public DisplayMode findFirstCompatibaleMode() {
 
 		DisplayMode goodModes[] = vc.getDisplayModes();
 		for (int x = 0; x < modes.length; x++) {
@@ -56,7 +75,8 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		return true;
 	}
 
-	public void setFullScreen(DisplayMode dm) {
+	public void setFullScreen() {
+		DisplayMode dm = this.findFirstCompatibaleMode();
 
 		JFrame f = new JFrame();
 		f.setUndecorated(true);
@@ -145,4 +165,22 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 
 	}
 
+	public void setUp(List<Player> players) {
+		setFullScreen();
+		Window w = getFullScreenWindow();
+
+		w.setFont(new Font("Arial", Font.PLAIN, 20));
+		w.setBackground(Color.WHITE);
+		w.setForeground(Color.RED);
+		w.setCursor(
+				w.getToolkit().createCustomCursor(
+						new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
+						new Point(0, 0), "null"
+				)
+		);
+
+		w.addKeyListener(new KeyListenerHandler(players));
+		w.addMouseListener(new MouseListenerHandler());
+		w.addMouseMotionListener(new MouseMotionListenerHandler());
+	}
 }

@@ -3,7 +3,7 @@ package view;
 import java.awt.*;
 
 public interface ScreenModifierInterface {
-    void setFullScreen(DisplayMode dm);
+    void setFullScreen();
 
     void update();
 

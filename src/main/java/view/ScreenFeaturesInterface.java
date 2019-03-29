@@ -5,7 +5,7 @@ import java.awt.*;
 public interface ScreenFeaturesInterface {
     DisplayMode[] getCompatibleDisplayModes();
 
-    DisplayMode findFirstCompatibaleMode(DisplayMode[] modes);
+    DisplayMode findFirstCompatibaleMode();
 
     DisplayMode getCurrentDM();
 
