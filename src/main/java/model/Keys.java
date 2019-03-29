@@ -1,6 +1,8 @@
 package model;
 
-public class Keys {
+import java.awt.event.InputEvent;
+
+public class Keys extends Controls {
 
 	private int up;
 	private int down;
@@ -61,4 +63,11 @@ public class Keys {
 		return true;
 	}
 
+	@Override
+	public boolean hasInputEvent(InputEvent event) {
+		return event.equals(this.down)
+				|| event.equals(this.up)
+				|| event.equals(this.left)
+				|| event.equals(this.right);
+	}
 }

@@ -3,6 +3,7 @@ package model;
 import enums.Direction;
 
 import java.awt.Color;
+import java.awt.event.InputEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -13,19 +14,19 @@ public class Player {
 	private int centreY;
 	private Direction currentDirection;
 
-	private Keys keys;
+	private Controls controls;
 
 	private final Color color;
 
 	List<Coordinates> path = new ArrayList<Coordinates>();
 
-	public Player(int X, int Y, Direction direction, Color color, Keys keys) {
+	public Player(int X, int Y, Direction direction, Color color, Controls controls) {
 
 		this.centreX = X;
 		this.centreY = Y;
 		this.currentDirection = direction;
 		this.color = color;
-		this.keys = keys;
+		this.controls = controls;
 	}
 
 	public int getCentreX() {
@@ -78,9 +79,12 @@ public class Player {
 		return this.path.get(index);
 	}
 
-	public Keys getKeys() {
+	public Controls getControls() {
+		return controls;
+	}
 
-		return keys;
+	public void setControls(Controls controls) {
+		this.controls = controls;
 	}
 
 	@Override
@@ -126,6 +130,10 @@ public class Player {
 			|| ((playerB.getCentreX() == coordB.getX()) && (playerB.getCentreY() == coordB.getY()))
 			|| ((this.getCentreX() == coordB.getX()) && (this.getCentreY() == coordB.getY()))
 			|| ((playerB.getCentreX() == coordA.getX()) && (playerB.getCentreY() == coordA.getY()));
+	}
+
+	public boolean controlledByEvent(InputEvent event){
+		return this.controls.hasInputEvent(event);
 	}
 
 	/**
