@@ -92,16 +92,7 @@ public class TronGame extends Game {
 
 	}
 
-	@Override
-	public void updateGameStatus() {
-
-		if (shouldGameEnd()) {
-			this.setRunning(false);
-		}
-	}
-
-	private boolean shouldGameEnd() {
-
+	public boolean shouldGameEnd() {
 		return hasPlayersInCollision();
 	}
 

@@ -23,9 +23,9 @@ public class Core {
 	public void init() {
 
 		game = new TronGame();
-		game.setRunning(true);
 		game.initializePlayers();
 		game.initializePresentation();
+		game.setRunning(true);
 	}
 
 	public void gameLoop() {
@@ -33,7 +33,9 @@ public class Core {
 		while (game.isRunning()) {
 			game.updatePositions();
 
-			game.updateGameStatus();
+			if (game.shouldGameEnd()) {
+				game.setRunning(false);
+			}
 
 			game.updateHistory();
 

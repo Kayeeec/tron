@@ -16,7 +16,7 @@ public abstract class Game {
 
 	public abstract void updatePositions();
 
-	public abstract void updateGameStatus();
+	public abstract boolean shouldGameEnd();
 
 	public abstract void updateHistory();
 
