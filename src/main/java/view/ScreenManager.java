@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 
 public class ScreenManager implements ScreenManagerInterface {
 
-	private static final DisplayMode[] modes = {
+	private static final DisplayMode[] DISPLAY_MODES = {
 			// new DisplayMode(1920,1080,32,0),
 			new DisplayMode(1680, 1050, 32, 0),
 			// new DisplayMode(1280,1024,32,0),
@@ -37,7 +37,7 @@ public class ScreenManager implements ScreenManagerInterface {
 	private DisplayMode findFirstCompatibleMode() {
 
 		DisplayMode[] goodModes = vc.getDisplayModes();
-		for (DisplayMode mode : modes) {
+		for (DisplayMode mode : DISPLAY_MODES) {
 			for (DisplayMode goodMode : goodModes) {
 				if (displayModesMatch(mode, goodMode)) {
 					return mode;
@@ -52,7 +52,8 @@ public class ScreenManager implements ScreenManagerInterface {
 		if (m1.getWidth() != m2.getWidth() || m1.getHeight() != m2.getHeight()) {
 			return false;
 		}
-		if (m1.getBitDepth() != DisplayMode.BIT_DEPTH_MULTI && m2.getBitDepth() != DisplayMode.BIT_DEPTH_MULTI
+		if (m1.getBitDepth() != DisplayMode.BIT_DEPTH_MULTI
+				&& m2.getBitDepth() != DisplayMode.BIT_DEPTH_MULTI
 				&& m1.getBitDepth() != m2.getBitDepth()) {
 			return false;
 		}
@@ -103,11 +104,6 @@ public class ScreenManager implements ScreenManagerInterface {
 		}
 	}
 
-	private Window getFullScreenWindow() {
-
-		return vc.getFullScreenWindow();
-	}
-
 	@Override
 	public int getWidth() {
 
@@ -145,7 +141,7 @@ public class ScreenManager implements ScreenManagerInterface {
 	@Override
 	public void setUp(List<Player> players) {
 		setFullScreen();
-		Window w = getFullScreenWindow();
+		Window w = vc.getFullScreenWindow();
 
 		w.setFont(new Font("Arial", Font.PLAIN, 20));
 		w.setBackground(Color.WHITE);
