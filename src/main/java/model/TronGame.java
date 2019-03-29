@@ -30,6 +30,8 @@ public class TronGame extends Game {
 				new Keys(KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT)));
 		players.add(new Player(600, 440, Direction.DOWN, Color.YELLOW,
 				new Keys(KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D)));
+//		players.add(new Player(400, 540, Direction.LEFT, Color.BLUE,
+//				new Keys(KeyEvent.VK_U, KeyEvent.VK_H, KeyEvent.VK_J, KeyEvent.VK_K)));
 	}
 
 	@Override
