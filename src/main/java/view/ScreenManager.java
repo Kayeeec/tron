@@ -16,13 +16,11 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		vc = e.getDefaultScreenDevice();
 	}
 
-	@Override
 	public DisplayMode[] getCompatibleDisplayModes() {
 
 		return vc.getDisplayModes();
 	}
 
-	@Override
 	public DisplayMode findFirstCompatibaleMode(DisplayMode[] modes) {
 
 		DisplayMode goodModes[] = vc.getDisplayModes();
@@ -36,7 +34,6 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		return null;
 	}
 
-	@Override
 	public DisplayMode getCurrentDM() {
 
 		return vc.getDisplayMode();
@@ -59,7 +56,6 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		return true;
 	}
 
-	@Override
 	public void setFullScreen(DisplayMode dm) {
 
 		JFrame f = new JFrame();
@@ -77,7 +73,6 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		}
 	}
 
-	@Override
 	public Graphics2D getGraphics() {
 
 		Window w = vc.getFullScreenWindow();
@@ -90,7 +85,6 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		}
 	}
 
-	@Override
 	public void update() {
 
 		Window w = vc.getFullScreenWindow();
@@ -107,7 +101,6 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		return vc.getFullScreenWindow();
 	}
 
-	@Override
 	public int getWidth() {
 
 		Window w = vc.getFullScreenWindow();
@@ -119,7 +112,6 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		}
 	}
 
-	@Override
 	public int getHeight() {
 
 		Window w = vc.getFullScreenWindow();
@@ -131,7 +123,6 @@ public class ScreenManager implements ScreenFeaturesInterface, ScreenModifierInt
 		}
 	}
 
-	@Override
 	public void restoreScreen() {
 
 		Window w = vc.getFullScreenWindow();

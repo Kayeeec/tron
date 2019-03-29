@@ -17,7 +17,6 @@ public class DrawManager implements DrawingInterface {
         this.players = players;
     }
 
-    @Override
     public void draw(Graphics2D g) {
 
         g.setColor(Color.BLACK);
