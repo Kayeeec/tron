@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import java.util.List;
@@ -128,12 +129,28 @@ public class TronGame extends Game {
 	}
 
 	@Override
-	public void initializeScreenManager() {
+	public void initializePresentation() {
 
 		screenManager = new ScreenManager();
 		drawManager = new DrawManager(screenManager, players);
 		screenManager.setUp(players);
 
+	}
+
+	@Override
+	public void reDraw() {
+
+		Graphics2D g = screenManager.getGraphics();
+		drawManager.draw(g);
+		g.dispose();
+		screenManager.update();
+
+	}
+
+	@Override
+	public void restoreScreen() {
+
+		screenManager.restoreScreen();
 	}
 
 }

@@ -22,6 +22,8 @@ public abstract class Game {
 
 	public abstract void endGame();
 	public abstract void initializePlayers();
-	public abstract void initializeScreenManager();
+	public abstract void initializePresentation();
+	public abstract void reDraw();
+	public abstract void restoreScreen();
 	
 }
