@@ -2,17 +2,15 @@ package view;
 
 import model.Coordinates;
 import model.Player;
-
 import java.awt.*;
-import java.util.*;
 import java.util.List;
 
 public class DrawManager implements DrawingInterface {
 
-    private ScreenFeaturesInterface screenManager;
+    private ScreenManagerInterface screenManager;
     private List<Player> players;
 
-    public DrawManager(ScreenFeaturesInterface screenManager, List<Player> players) {
+    public DrawManager(ScreenManagerInterface screenManager, List<Player> players) {
         this.screenManager = screenManager;
         this.players = players;
     }
