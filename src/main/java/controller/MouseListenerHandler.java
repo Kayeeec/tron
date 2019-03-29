@@ -48,11 +48,12 @@ public class MouseListenerHandler implements MouseListener {
 		for (Player player : players){
 			Mouse controls = (Mouse) player.getControls();
 			Direction currentDirection = player.getCurrentDirection();
-			if (e.equals(controls.getLeft())){ //left
+            int button = e.getButton();
+            if (button == controls.getLeft()){ //left
 				Direction nextDirection = left.get(currentDirection);
 				player.setCurrentDirection(nextDirection);
 				return;
-			} else if (e.equals(controls.getRight())) {
+			} else if (button == controls.getRight()) {
 				Direction nextDirection = right.get(currentDirection);
 				player.setCurrentDirection(nextDirection);
 				return;

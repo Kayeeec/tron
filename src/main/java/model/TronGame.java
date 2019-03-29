@@ -3,6 +3,7 @@ package model;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,8 +29,7 @@ public class TronGame extends Game {
 		players = new LinkedList<Player>();
 		players.add(new Player(40, 40, Direction.RIGHT, Color.RED,
 				new Keys(KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT)));
-		players.add(new Player(600, 440, Direction.DOWN, Color.YELLOW,
-				new Keys(KeyEvent.VK_W, KeyEvent.VK_S, KeyEvent.VK_A, KeyEvent.VK_D)));
+		players.add(new Player(600, 440, Direction.DOWN, Color.YELLOW, new Mouse(MouseEvent.BUTTON1, MouseEvent.BUTTON3)));
 	}
 
 	@Override
