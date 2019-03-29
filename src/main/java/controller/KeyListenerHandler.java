@@ -1,6 +1,6 @@
 package controller;
 
-import model.Direction;
+import enums.Direction;
 import model.Player;
 
 import java.awt.event.KeyEvent;

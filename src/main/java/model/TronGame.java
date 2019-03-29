@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import java.util.List;
 
+import enums.Direction;
 import view.DrawManager;
 import view.DrawingInterface;
 import view.ScreenManager;
