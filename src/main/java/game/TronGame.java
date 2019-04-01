@@ -4,6 +4,7 @@ import enums.Direction;
 import model.Keys;
 import model.Mouse;
 import model.TronPlayer;
+import model.TwoDimensionalCoordinates;
 import view.DrawManager;
 import view.ScreenManager;
 
@@ -24,10 +25,10 @@ public class TronGame extends Game {
 	public void initializePlayers() {
 
 		players = new LinkedList<TronPlayer>();
-		players.add(new TronPlayer(40, 40, Direction.RIGHT, Color.RED,
+		players.add(new TronPlayer(new TwoDimensionalCoordinates(40, 40), Direction.RIGHT, Color.RED,
 				new Keys(KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT)));
-		players.add(new TronPlayer(600, 440, Direction.DOWN, Color.YELLOW, new Mouse(MouseEvent.BUTTON1, MouseEvent.BUTTON3)));
-		players.add(new TronPlayer(400, 540, Direction.LEFT, Color.BLUE,
+		players.add(new TronPlayer(new TwoDimensionalCoordinates(600, 440), Direction.DOWN, Color.YELLOW, new Mouse(MouseEvent.BUTTON1, MouseEvent.BUTTON3)));
+		players.add(new TronPlayer(new TwoDimensionalCoordinates(400, 540), Direction.LEFT, Color.BLUE,
 				new Keys(KeyEvent.VK_U, KeyEvent.VK_H, KeyEvent.VK_J, KeyEvent.VK_K)));
 	}
 
