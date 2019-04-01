@@ -45,7 +45,7 @@ public class TronGame extends BasicGame {
 	@Override
 	public void initializePresentation() {
 		screenManager = new TronScreenManager();
-		drawManager = new TronDrawingManager(screenManager, players);
+		drawManager = new TronDrawingManager((TronScreenManager) screenManager, players);
 		screenManager.setUp(playerHandlers);
 
 	}

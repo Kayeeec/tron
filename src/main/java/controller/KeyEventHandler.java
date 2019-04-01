@@ -28,7 +28,6 @@ public class KeyEventHandler extends PlayerControlHandler implements KeyListener
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        System.out.println("key pressed "+keyCode);
         Direction currentDirection = player.getCurrentDirection();
 
         if (keyCode == up) {

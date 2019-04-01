@@ -1,11 +1,11 @@
-import game.Game;
+import game.BasicGame;
 import game.TronGame;
 
 public class Core {
 
-	private Game game;
+	private BasicGame game;
 	
-	public Core(Game game) {
+	public Core(BasicGame game) {
 		this.game = game;
 	}
 
