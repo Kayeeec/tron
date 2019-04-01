@@ -19,6 +19,8 @@ public class TronGame extends Game {
 
 	private List<TronPlayer> players;
 
+	private static final int MOVE_AMT = 5;
+
 	public TronGame() {
 
 	}
@@ -52,42 +54,7 @@ public class TronGame extends Game {
 	private void updateTronPlayerPositions() {
 
 		for (TronPlayer player : players) {
-			int moveAmount = 5;
-			switch (player.getCurrentDirection()) {
-			case UP:
-				if (player.getCentreY() > 0) {
-					player.setCentreY(player.getCentreY() - moveAmount);
-				}
-				else {
-					player.setCentreY(screenManager.getHeight());
-				}
-				break;
-			case RIGHT:
-				if (player.getCentreX() < screenManager.getWidth()) {
-					player.setCentreX(player.getCentreX() + moveAmount);
-				}
-				else {
-					player.setCentreX(0);
-				}
-				break;
-			case DOWN:
-				if (player.getCentreY() < screenManager.getHeight()) {
-					player.setCentreY(player.getCentreY() + moveAmount);
-				}
-				else {
-					player.setCentreY(0);
-				}
-				break;
-			case LEFT:
-				if (player.getCentreX() > 0) {
-					player.setCentreX(player.getCentreX() - moveAmount);
-				}
-				else {
-					player.setCentreX(screenManager.getWidth());
-				}
-				break;
-			}
-
+			player.updatePosition(MOVE_AMT, screenManager.getHeight(), screenManager.getWidth());
 		}
 
 	}

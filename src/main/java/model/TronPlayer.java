@@ -67,11 +67,6 @@ public class TronPlayer extends Player {
 		return Collections.unmodifiableList(this.path);
 	}
 
-	private TwoDimensionalCoordinates getCoordinateAt(int index) {
-
-		return this.path.get(index);
-	}
-
 	@Override
 	public int hashCode() {
 
@@ -104,5 +99,34 @@ public class TronPlayer extends Player {
 		}
 
 		return false;
+	}
+
+	public void updatePosition(int moveAmt, int maxHeight, int maxWidth) {
+
+		switch (this.getCurrentDirection()) {
+		case UP:
+			if (this.position.getY() > 0) {
+				this.position.setY(this.position.getY() - moveAmt);
+			}
+			else {
+				this.position.setY(maxHeight);
+			}
+			break;
+		case RIGHT:
+			this.position.setX((this.position.getX() + moveAmt) % maxWidth);
+			break;
+		case DOWN:
+			this.position.setY((this.position.getY() + moveAmt) % maxHeight);
+			break;
+		case LEFT:
+			if (this.position.getX() > 0) {
+				this.position.setX(this.position.getX() - moveAmt);
+			}
+			else {
+				this.position.setX(maxWidth);
+			}
+			break;
+		}
+
 	}
 }
