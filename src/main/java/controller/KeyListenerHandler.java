@@ -24,25 +24,25 @@ public class KeyListenerHandler implements KeyListener {
 				Keys playerKeys = (Keys) player.getControls();
 				
 				if (event.getKeyCode() == playerKeys.getUp()) {
-					if (player.getCurrentDirection() != Direction.DOWN) {
+					if (player.getCurrentDirection() != Direction.UP.getOpposite()) {
 						player.setCurrentDirection(Direction.UP);
 					}
 					return;
 				}
 				else if (event.getKeyCode() == playerKeys.getDown()) {
-					if (player.getCurrentDirection() != Direction.UP) {
+					if (player.getCurrentDirection() != Direction.DOWN.getOpposite()) {
 						player.setCurrentDirection(Direction.DOWN);
 					}
 					return;
 				}
 				else if (event.getKeyCode() == playerKeys.getRight()) {
-					if (player.getCurrentDirection() != Direction.LEFT) {
+					if (player.getCurrentDirection() != Direction.RIGHT.getOpposite()) {
 						player.setCurrentDirection(Direction.RIGHT);
 					}
 					return;
 				}
 				else if (event.getKeyCode() == playerKeys.getLeft()) {
-					if (player.getCurrentDirection() != Direction.RIGHT) {
+					if (player.getCurrentDirection() != Direction.LEFT.getOpposite()) {
 						player.setCurrentDirection(Direction.LEFT);
 					}
 					return;
