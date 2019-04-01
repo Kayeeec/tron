@@ -6,10 +6,11 @@ public class TwoDimensionalCoordinates extends Coordinates {
 	private int Y;
 
 	public TwoDimensionalCoordinates(int x, int y) {
+
 		this.X = x;
 		this.Y = y;
 	}
-	
+
 	public int getX() {
 
 		return X;
@@ -28,6 +29,10 @@ public class TwoDimensionalCoordinates extends Coordinates {
 	public void setY(int y) {
 
 		Y = y;
+	}
+
+	public boolean equals(TwoDimensionalCoordinates another) {
+		return this.X == another.getX() && this.Y == another.getY();
 	}
 
 }

@@ -9,36 +9,42 @@ import java.util.List;
 
 public class TronPlayer extends Player {
 
-	private TwoDimensionalCoordinates coordinate;
+	private TwoDimensionalCoordinates position;
 	private Direction currentDirection;
 
 	private final List<TwoDimensionalCoordinates> path = new ArrayList<TwoDimensionalCoordinates>();
 
 	public TronPlayer(TwoDimensionalCoordinates coordinate, Direction direction, Color color, Controls controls) {
+
 		super(color, controls);
 
-		this.coordinate = coordinate;
+		this.position = coordinate;
 		this.currentDirection = direction;
+	}
+
+	public TwoDimensionalCoordinates getPosition() {
+
+		return this.position;
 	}
 
 	public int getCentreX() {
 
-		return this.coordinate.getX();
+		return this.position.getX();
 	}
 
 	public void setCentreX(int centreX) {
 
-		this.coordinate.setX(centreX);
+		this.position.setX(centreX);
 	}
 
 	public int getCentreY() {
 
-		return this.coordinate.getY();
+		return this.position.getY();
 	}
 
 	public void setCentreY(int centreY) {
 
-		this.coordinate.setY(centreY);
+		this.position.setY(centreY);
 	}
 
 	public Direction getCurrentDirection() {
@@ -85,30 +91,18 @@ public class TronPlayer extends Player {
 		if (getColor() == null) {
 			return other.getColor() == null;
 		}
-		else return getColor().equals(other.getColor());
+		else
+			return getColor().equals(other.getColor());
 	}
 
 	public boolean isInCollisionWith(TronPlayer playerB) {
 
-		if (!this.equals(playerB)) {
-			for (int i = 0; i < this.getPath().size(); i++) {
-				TwoDimensionalCoordinates coordA = this.getCoordinateAt(i);
-				TwoDimensionalCoordinates coordB = playerB.getCoordinateAt(i);
-				if (isColliding(playerB, coordA, coordB)) {
-					return true;
-				}
+		for (TwoDimensionalCoordinates coord : playerB.getPath()) {
+			if (coord.equals(this.getPosition())) {
+				return true;
 			}
 		}
 
 		return false;
 	}
-
-	private boolean isColliding(TronPlayer playerB, TwoDimensionalCoordinates coordA, TwoDimensionalCoordinates coordB) {
-
-		return ((this.getCentreX() == coordA.getX()) && (this.getCentreY() == coordA.getY()))
-				|| ((playerB.getCentreX() == coordB.getX()) && (playerB.getCentreY() == coordB.getY()))
-				|| ((this.getCentreX() == coordB.getX()) && (this.getCentreY() == coordB.getY()))
-				|| ((playerB.getCentreX() == coordA.getX()) && (playerB.getCentreY() == coordA.getY()));
-	}
-
 }
