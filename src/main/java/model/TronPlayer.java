@@ -9,38 +9,36 @@ import java.util.List;
 
 public class TronPlayer extends Player {
 
-	private int centreX;
-	private int centreY;
+	private TwoDimensionalCoordinates coordinate;
 	private Direction currentDirection;
 
 	private final List<TwoDimensionalCoordinates> path = new ArrayList<TwoDimensionalCoordinates>();
 
-	public TronPlayer(int X, int Y, Direction direction, Color color, Controls controls) {
+	public TronPlayer(TwoDimensionalCoordinates coordinate, Direction direction, Color color, Controls controls) {
 		super(color, controls);
 
-		this.centreX = X;
-		this.centreY = Y;
+		this.coordinate = coordinate;
 		this.currentDirection = direction;
 	}
 
 	public int getCentreX() {
 
-		return centreX;
+		return this.coordinate.getX();
 	}
 
 	public void setCentreX(int centreX) {
 
-		this.centreX = centreX;
+		this.coordinate.setX(centreX);
 	}
 
 	public int getCentreY() {
 
-		return centreY;
+		return this.coordinate.getY();
 	}
 
 	public void setCentreY(int centreY) {
 
-		this.centreY = centreY;
+		this.coordinate.setY(centreY);
 	}
 
 	public Direction getCurrentDirection() {
