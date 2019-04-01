@@ -4,10 +4,14 @@ import game.TronGame;
 public class Core {
 
 	private Game game;
+	
+	public Core(Game game) {
+		this.game = game;
+	}
 
 	public static void main(String[] args) {
 
-		new Core().run();
+		new Core(new TronGame()).run();
 	}
 
 	private void run() {
@@ -21,8 +25,6 @@ public class Core {
 	}
 
 	private void init() {
-
-		game = new TronGame();
 		game.initializePlayers();
 		game.initializePresentation();
 		game.setRunning(true);
