@@ -1,38 +1,19 @@
 package game;
 
-import view.DrawingManager;
-import view.ScreenManager;
 
-public abstract class Game {
-	protected ScreenManager screenManager;
-	protected DrawingManager drawManager;
+public interface Game {
 
-	private boolean running;
+	
+	public void update();
+	
+	public void draw();
+	
+	public void init();
 
-	public boolean isRunning() {
+	public boolean isRunning();
 
-		return running;
-	}
+	public void cleanup();
 
-	public void setRunning(boolean running) {
-
-		this.running = running;
-	}
-
-	public abstract void updatePositions();
-
-	public abstract boolean shouldGameEnd();
-
-	public abstract void updateHistory();
-
-	public abstract void endGame();
-
-	public abstract void initializePlayers();
-
-	public abstract void initializePresentation();
-
-	public abstract void reDraw();
-
-	public abstract void restoreScreen();
+	public void endGame();
 
 }

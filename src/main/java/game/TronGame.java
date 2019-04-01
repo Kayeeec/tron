@@ -8,7 +8,6 @@ import model.TronPlayer;
 import model.TwoDimensionalCoordinates;
 import view.TronDrawingManager;
 import view.TronScreenManager;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -141,7 +140,7 @@ public class TronGame extends BasicGame {
 	}
 
 	@Override
-	public void reDraw() {
+	public void draw() {
 
 		Graphics2D g = screenManager.getGraphics();
 		drawManager.draw(g);
