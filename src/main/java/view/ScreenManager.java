@@ -1,6 +1,6 @@
 package view;
 
-import model.TronPlayer;
+import controller.PlayerControlHandler;
 
 import java.awt.*;
 import java.util.List;
@@ -17,5 +17,5 @@ public interface ScreenManager {
 
 	void restoreScreen();
 
-	void setUp(List<TronPlayer> players);
+	void setUp(List<PlayerControlHandler> playerHandlers);
 }

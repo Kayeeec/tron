@@ -9,52 +9,34 @@ import java.util.List;
 
 public class TronPlayer extends Player {
 
-	private TwoDimensionalCoordinates position;
-	private Direction currentDirection;
+	private TwoDimensionalCoordinates coordinate;
 
 	private final List<TwoDimensionalCoordinates> path = new ArrayList<TwoDimensionalCoordinates>();
 
-	public TronPlayer(TwoDimensionalCoordinates coordinate, Direction direction, Color color, Controls controls) {
+	public TronPlayer(TwoDimensionalCoordinates coordinate, Direction direction, Color color) {
+		super(color, direction);
 
-		super(color, controls);
-
-		this.position = coordinate;
-		this.currentDirection = direction;
-	}
-
-	public TwoDimensionalCoordinates getPosition() {
-
-		return this.position;
+		this.coordinate = coordinate;
 	}
 
 	public int getCentreX() {
 
-		return this.position.getX();
+		return this.coordinate.getX();
 	}
 
 	public void setCentreX(int centreX) {
 
-		this.position.setX(centreX);
+		this.coordinate.setX(centreX);
 	}
 
 	public int getCentreY() {
 
-		return this.position.getY();
+		return this.coordinate.getY();
 	}
 
 	public void setCentreY(int centreY) {
 
-		this.position.setY(centreY);
-	}
-
-	public Direction getCurrentDirection() {
-
-		return currentDirection;
-	}
-
-	public void setCurrentDirection(Direction currentDirection) {
-
-		this.currentDirection = currentDirection;
+		this.coordinate.setY(centreY);
 	}
 
 	public void appendPath(int x, int y) {
@@ -65,6 +47,11 @@ public class TronPlayer extends Player {
 	public List<TwoDimensionalCoordinates> getPath() {
 
 		return Collections.unmodifiableList(this.path);
+	}
+
+	private TwoDimensionalCoordinates getCoordinateAt(int index) {
+
+		return this.path.get(index);
 	}
 
 	@Override
@@ -86,47 +73,30 @@ public class TronPlayer extends Player {
 		if (getColor() == null) {
 			return other.getColor() == null;
 		}
-		else
-			return getColor().equals(other.getColor());
+		else return getColor().equals(other.getColor());
 	}
 
 	public boolean isInCollisionWith(TronPlayer playerB) {
 
-		for (TwoDimensionalCoordinates coord : playerB.getPath()) {
-			if (coord.equals(this.getPosition())) {
-				return true;
+		if (!this.equals(playerB)) {
+			for (int i = 0; i < this.getPath().size(); i++) {
+				TwoDimensionalCoordinates coordA = this.getCoordinateAt(i);
+				TwoDimensionalCoordinates coordB = playerB.getCoordinateAt(i);
+				if (isColliding(playerB, coordA, coordB)) {
+					return true;
+				}
 			}
 		}
 
 		return false;
 	}
 
-	public void updatePosition(int moveAmt, int maxHeight, int maxWidth) {
+	private boolean isColliding(TronPlayer playerB, TwoDimensionalCoordinates coordA, TwoDimensionalCoordinates coordB) {
 
-		switch (this.getCurrentDirection()) {
-		case UP:
-			if (this.position.getY() > 0) {
-				this.position.setY(this.position.getY() - moveAmt);
-			}
-			else {
-				this.position.setY(maxHeight);
-			}
-			break;
-		case RIGHT:
-			this.position.setX((this.position.getX() + moveAmt) % maxWidth);
-			break;
-		case DOWN:
-			this.position.setY((this.position.getY() + moveAmt) % maxHeight);
-			break;
-		case LEFT:
-			if (this.position.getX() > 0) {
-				this.position.setX(this.position.getX() - moveAmt);
-			}
-			else {
-				this.position.setX(maxWidth);
-			}
-			break;
-		}
-
+		return ((this.getCentreX() == coordA.getX()) && (this.getCentreY() == coordA.getY()))
+				|| ((playerB.getCentreX() == coordB.getX()) && (playerB.getCentreY() == coordB.getY()))
+				|| ((this.getCentreX() == coordB.getX()) && (this.getCentreY() == coordB.getY()))
+				|| ((playerB.getCentreX() == coordA.getX()) && (playerB.getCentreY() == coordA.getY()));
 	}
+
 }

@@ -1,11 +1,11 @@
 package view;
 
-import controller.KeyListenerHandler;
-import controller.MouseListenerHandler;
-import model.TronPlayer;
+import controller.PlayerControlHandler;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.List;
@@ -133,7 +133,7 @@ public class TronScreenManager implements ScreenManager {
 		vc.setFullScreenWindow(null);
 	}
 
-	public void setUp(List<TronPlayer> players) {
+	public void setUp(List<PlayerControlHandler> playerHandlers) {
 
 		setFullScreen();
 		Window w = vc.getFullScreenWindow();
@@ -146,8 +146,14 @@ public class TronScreenManager implements ScreenManager {
 				new Point(0, 0), "null")
 			);
 
-		w.addKeyListener(new KeyListenerHandler(players));
-		w.addMouseListener(new MouseListenerHandler(players));
+		for (PlayerControlHandler ph :
+				playerHandlers) {
+			if (ph instanceof KeyListener) {
+				w.addKeyListener((KeyListener) ph);
+			} else if (ph instanceof MouseListener) {
+				w.addMouseListener((MouseListener) ph);
+			}
+		}
 	}
 
 }

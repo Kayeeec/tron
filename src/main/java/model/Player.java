@@ -1,15 +1,16 @@
 package model;
 
+import enums.Direction;
+
 import java.awt.*;
-import java.awt.event.InputEvent;
 
 public abstract class Player {
     private final Color color;
-    private Controls controls;
+    private Direction currentDirection;
 
-    public Player(Color color, Controls controls) {
+    public Player(Color color, Direction currentDirection) {
         this.color = color;
-        this.controls = controls;
+        this.currentDirection = currentDirection;
     }
 
     public Color getColor() {
@@ -17,15 +18,11 @@ public abstract class Player {
         return color;
     }
 
-    public Controls getControls() {
-        return controls;
+    public Direction getCurrentDirection() {
+        return currentDirection;
     }
 
-    public void setControls(Controls controls) {
-        this.controls = controls;
-    }
-
-    public boolean controlledByEvent(InputEvent event){
-        return this.controls.hasInputEvent(event);
+    public void setCurrentDirection(Direction currentDirection) {
+        this.currentDirection = currentDirection;
     }
 }

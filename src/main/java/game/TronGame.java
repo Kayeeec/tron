@@ -1,25 +1,24 @@
 package game;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.util.LinkedList;
-import java.util.List;
-
+import controller.KeyEventHandler;
+import controller.MouseEventHandler;
+import controller.PlayerControlHandler;
 import enums.Direction;
-import model.Keys;
-import model.Mouse;
 import model.TronPlayer;
 import model.TwoDimensionalCoordinates;
 import view.TronDrawingManager;
 import view.TronScreenManager;
 
-public class TronGame extends Game {
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.util.LinkedList;
+import java.util.List;
+
+public class TronGame extends BasicGame {
 
 	private List<TronPlayer> players;
-
-	private static final int MOVE_AMT = 5;
+	private List<PlayerControlHandler> playerHandlers;
 
 	public TronGame() {
 
@@ -28,20 +27,27 @@ public class TronGame extends Game {
 	public void initializePlayers() {
 
 		players = new LinkedList<TronPlayer>();
-		players.add(new TronPlayer(new TwoDimensionalCoordinates(40, 40), Direction.RIGHT, Color.RED,
-				new Keys(KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT)));
-		players.add(new TronPlayer(new TwoDimensionalCoordinates(600, 440), Direction.DOWN, Color.YELLOW,
-				new Mouse(MouseEvent.BUTTON1, MouseEvent.BUTTON3)));
-		players.add(new TronPlayer(new TwoDimensionalCoordinates(400, 540), Direction.LEFT, Color.BLUE,
-				new Keys(KeyEvent.VK_U, KeyEvent.VK_H, KeyEvent.VK_J, KeyEvent.VK_K)));
+		playerHandlers = new LinkedList<PlayerControlHandler>();
+
+		TronPlayer player1 = new TronPlayer(new TwoDimensionalCoordinates(40, 40), Direction.RIGHT, Color.RED);
+		TronPlayer player2 = new TronPlayer(new TwoDimensionalCoordinates(600, 440), Direction.DOWN, Color.YELLOW);
+
+		players.add(player1);
+		players.add(player2);
+
+		MouseEventHandler playerHandler1 = new MouseEventHandler(player1, MouseEvent.BUTTON1, MouseEvent.BUTTON3);
+		KeyEventHandler playerHandler2 = new KeyEventHandler(player2, KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT);
+
+		playerHandlers.add(playerHandler1);
+		playerHandlers.add(playerHandler2);
+
 	}
 
 	@Override
 	public void initializePresentation() {
-
 		screenManager = new TronScreenManager();
 		drawManager = new TronDrawingManager(screenManager, players);
-		screenManager.setUp(players);
+		screenManager.setUp(playerHandlers);
 
 	}
 
@@ -53,14 +59,49 @@ public class TronGame extends Game {
 
 	private void updateTronPlayerPositions() {
 
-		for (TronPlayer player : players) {
-			player.updatePosition(MOVE_AMT, screenManager.getHeight(), screenManager.getWidth());
+		for (PlayerControlHandler playerHandler : playerHandlers) {
+			TronPlayer player = (TronPlayer) playerHandler.getPlayer();
+			int moveAmount = 5;
+			switch (player.getCurrentDirection()) {
+			case UP:
+				if (player.getCentreY() > 0) {
+					player.setCentreY(player.getCentreY() - moveAmount);
+				}
+				else {
+					player.setCentreY(screenManager.getHeight());
+				}
+				break;
+			case RIGHT:
+				if (player.getCentreX() < screenManager.getWidth()) {
+					player.setCentreX(player.getCentreX() + moveAmount);
+				}
+				else {
+					player.setCentreX(0);
+				}
+				break;
+			case DOWN:
+				if (player.getCentreY() < screenManager.getHeight()) {
+					player.setCentreY(player.getCentreY() + moveAmount);
+				}
+				else {
+					player.setCentreY(0);
+				}
+				break;
+			case LEFT:
+				if (player.getCentreX() > 0) {
+					player.setCentreX(player.getCentreX() - moveAmount);
+				}
+				else {
+					player.setCentreX(screenManager.getWidth());
+				}
+				break;
+			}
+
 		}
 
 	}
 
 	public boolean shouldGameEnd() {
-
 		return hasPlayersInCollision();
 	}
 
@@ -70,8 +111,10 @@ public class TronGame extends Game {
 			for (TronPlayer playerB : players) {
 				if (playerA.isInCollisionWith(playerB)) {
 					return true;
+
 				}
 			}
+
 		}
 		return false;
 	}
