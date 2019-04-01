@@ -12,8 +12,8 @@ import model.Keys;
 import model.Mouse;
 import model.TronPlayer;
 import model.TwoDimensionalCoordinates;
-import view.DrawManager;
-import view.ScreenManager;
+import view.TronDrawingManager;
+import view.TronScreenManager;
 
 public class TronGame extends Game {
 
@@ -39,8 +39,8 @@ public class TronGame extends Game {
 	@Override
 	public void initializePresentation() {
 
-		screenManager = new ScreenManager();
-		drawManager = new DrawManager(screenManager, players);
+		screenManager = new TronScreenManager();
+		drawManager = new TronDrawingManager(screenManager, players);
 		screenManager.setUp(players);
 
 	}

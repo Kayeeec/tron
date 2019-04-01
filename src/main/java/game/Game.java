@@ -1,11 +1,11 @@
 package game;
 
-import view.DrawingInterface;
-import view.ScreenManagerInterface;
+import view.DrawingManager;
+import view.ScreenManager;
 
 public abstract class Game {
-	protected ScreenManagerInterface screenManager;
-	protected DrawingInterface drawManager;
+	protected ScreenManager screenManager;
+	protected DrawingManager drawManager;
 
 	private boolean running;
 

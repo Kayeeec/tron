@@ -2,7 +2,7 @@ package view;
 
 import java.awt.*;
 
-public interface DrawingInterface {
+public interface DrawingManager {
 
 	void draw(Graphics2D g);
 }

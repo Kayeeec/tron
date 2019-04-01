@@ -6,12 +6,12 @@ import model.TwoDimensionalCoordinates;
 import java.awt.*;
 import java.util.List;
 
-public class DrawManager implements DrawingInterface {
+public class TronDrawingManager implements DrawingManager {
 
-	private final ScreenManagerInterface screenManager;
+	private final ScreenManager screenManager;
 	private final List<TronPlayer> players;
 
-	public DrawManager(ScreenManagerInterface screenManager, List<TronPlayer> players) {
+	public TronDrawingManager(ScreenManager screenManager, List<TronPlayer> players) {
 
 		this.screenManager = screenManager;
 		this.players = players;
