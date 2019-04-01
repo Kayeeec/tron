@@ -15,7 +15,7 @@ import model.TwoDimensionalCoordinates;
 import view.TronDrawingManager;
 import view.TronScreenManager;
 
-public class TronGame extends Game {
+public class TronGame extends BasicGame {
 
 	private List<TronPlayer> players;
 
@@ -98,7 +98,7 @@ public class TronGame extends Game {
 	}
 
 	@Override
-	public void reDraw() {
+	public void draw() {
 
 		Graphics2D g = screenManager.getGraphics();
 		drawManager.draw(g);

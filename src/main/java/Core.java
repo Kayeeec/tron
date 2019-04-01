@@ -17,31 +17,19 @@ public class Core {
 	private void run() {
 
 		try {
-			init();
+			game.init();
 			gameLoop();
 		} finally {
-			game.restoreScreen();
+			game.cleanup();
 		}
-	}
-
-	private void init() {
-		game.initializePlayers();
-		game.initializePresentation();
-		game.setRunning(true);
 	}
 
 	private void gameLoop() {
 
 		while (game.isRunning()) {
-			game.updatePositions();
+			game.update();
 
-			if (game.shouldGameEnd()) {
-				game.setRunning(false);
-			}
-
-			game.updateHistory();
-
-			game.reDraw();
+			game.draw();
 
 			pause();
 		}
