@@ -32,10 +32,12 @@ public class Coordinate implements Cloneable {
 	}
 
 	public boolean equals(Coordinate another) {
+
 		return this.X == another.getX() && this.Y == another.getY();
 	}
-	
+
 	public Coordinate clone() {
+
 		return new Coordinate(X, Y);
 	}
 

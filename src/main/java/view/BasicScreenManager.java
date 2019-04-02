@@ -1,13 +1,20 @@
 package view;
 
-import controller.PlayerControlHandler;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.DisplayMode;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Point;
+import java.awt.Window;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
 import javax.swing.JFrame;
+
+import controller.PlayerControlHandler;
 
 public abstract class BasicScreenManager implements ScreenManager {
 
@@ -22,7 +29,7 @@ public abstract class BasicScreenManager implements ScreenManager {
 			new DisplayMode(800, 600, 16, 0),
 			new DisplayMode(640, 480, 32, 0),
 			new DisplayMode(640, 480, 24, 0),
-			new DisplayMode(640, 480, 16, 0),
+			new DisplayMode(640, 480, 16, 0)
 	};
 
 	public BasicScreenManager() {
@@ -137,6 +144,7 @@ public abstract class BasicScreenManager implements ScreenManager {
 
 	@Override
 	public void setUp(List<PlayerControlHandler> playerHandlers) {
+
 		setFullScreen();
 		Window w = getVc().getFullScreenWindow();
 

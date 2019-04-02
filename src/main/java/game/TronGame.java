@@ -11,8 +11,8 @@ import controller.KeyEventHandler;
 import controller.MouseEventHandler;
 import controller.PlayerControlHandler;
 import enums.Direction;
-import model.TronPlayer;
 import model.Coordinate;
+import model.TronPlayer;
 import view.TronDrawingManager;
 import view.TronScreenManager;
 
@@ -23,6 +23,7 @@ public class TronGame extends BasicGame {
 	private static final int MOVE_AMT = 5;
 
 	public TronGame() {
+
 		super();
 	}
 
@@ -48,6 +49,7 @@ public class TronGame extends BasicGame {
 
 	@Override
 	public void initializePresentation() {
+
 		screenManager = new TronScreenManager();
 		drawingManager = new TronDrawingManager(players);
 		screenManager.setUp(playerHandlers);

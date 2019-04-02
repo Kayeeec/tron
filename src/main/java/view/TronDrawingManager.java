@@ -1,10 +1,11 @@
 package view;
 
-import model.TronPlayer;
-import model.Coordinate;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.util.List;
+
+import model.Coordinate;
+import model.TronPlayer;
 
 public class TronDrawingManager implements DrawingManager {
 

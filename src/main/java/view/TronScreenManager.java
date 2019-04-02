@@ -1,12 +1,12 @@
 package view;
 
-import controller.PlayerControlHandler;
-
-import java.awt.*;
+import java.awt.Font;
+import java.awt.Window;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.util.List;
+
+import controller.PlayerControlHandler;
 
 public class TronScreenManager extends BasicScreenManager implements ScreenManager {
 
@@ -19,6 +19,7 @@ public class TronScreenManager extends BasicScreenManager implements ScreenManag
 
 	@Override
 	public void setUp(List<PlayerControlHandler> playerHandlers) {
+
 		super.setUp(playerHandlers);
 
 		Window w = getVc().getFullScreenWindow();

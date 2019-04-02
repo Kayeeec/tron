@@ -4,8 +4,9 @@ import game.TronGame;
 public class Core {
 
 	private BasicGame game;
-	
+
 	public Core(BasicGame game) {
+
 		this.game = game;
 	}
 

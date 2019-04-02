@@ -1,9 +1,9 @@
 package view;
 
-import controller.PlayerControlHandler;
-
-import java.awt.*;
+import java.awt.Graphics2D;
 import java.util.List;
+
+import controller.PlayerControlHandler;
 
 public interface ScreenManager {
 

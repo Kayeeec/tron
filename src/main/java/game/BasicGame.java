@@ -4,6 +4,7 @@ import view.DrawingManager;
 import view.ScreenManager;
 
 public abstract class BasicGame implements Game {
+
 	protected ScreenManager screenManager;
 	protected DrawingManager drawingManager;
 
@@ -18,18 +19,20 @@ public abstract class BasicGame implements Game {
 
 		this.running = running;
 	}
-	
+
 	public void update() {
+
 		updatePositions();
-		
+
 		if (shouldGameEnd()) {
 			endGame();
 		}
-		
+
 		updateHistory();
 	}
-	
+
 	public void init() {
+
 		initializePlayers();
 		initializePresentation();
 		setRunning(true);
@@ -50,9 +53,10 @@ public abstract class BasicGame implements Game {
 	public abstract void draw();
 
 	public void cleanup() {
+
 		restoreScreen();
 	}
-	
+
 	public abstract void restoreScreen();
 
 }

@@ -4,13 +4,15 @@ import model.Player;
 
 public abstract class PlayerControlHandler {
 
-    protected Player player;
+	protected Player player;
 
-    public PlayerControlHandler(Player player) {
-        this.player = player;
-    }
+	public PlayerControlHandler(Player player) {
 
-    public Player getPlayer() {
-        return player;
-    }
+		this.player = player;
+	}
+
+	public Player getPlayer() {
+
+		return player;
+	}
 }

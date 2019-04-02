@@ -1,11 +1,11 @@
 package model;
 
-import enums.Direction;
-
-import java.awt.*;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import enums.Direction;
 
 public class TronPlayer extends Player {
 
@@ -33,7 +33,7 @@ public class TronPlayer extends Player {
 
 		return Collections.unmodifiableList(this.path);
 	}
-	
+
 	@Override
 	public int hashCode() {
 

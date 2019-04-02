@@ -2,10 +2,7 @@ package enums;
 
 public enum Direction {
 
-	UP,
-	DOWN,
-	LEFT,
-	RIGHT;
+	UP, DOWN, LEFT, RIGHT;
 
 	private Direction opposite;
 	private Direction left;
@@ -30,14 +27,17 @@ public enum Direction {
 	}
 
 	public Direction getOpposite() {
+
 		return opposite;
 	}
 
 	public Direction getLeft() {
+
 		return left;
 	}
 
 	public Direction getRight() {
+
 		return right;
 	}
 }
