@@ -24,26 +24,6 @@ public class TronPlayer extends Player {
 		return this.position;
 	}
 
-	public int getPositionX() {
-
-		return this.position.getX();
-	}
-
-	public void setPositionX(int centreX) {
-
-		this.position.setX(centreX);
-	}
-
-	public int getPositionY() {
-
-		return this.position.getY();
-	}
-
-	public void setPositionY(int centreY) {
-
-		this.position.setY(centreY);
-	}
-
 	public void appendPath(Coordinate coordinate) {
 
 		this.path.add(coordinate);
