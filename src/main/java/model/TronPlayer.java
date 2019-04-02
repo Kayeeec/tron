@@ -24,22 +24,22 @@ public class TronPlayer extends Player {
 		return this.position;
 	}
 
-	public int getCentreX() {
+	public int getPositionX() {
 
 		return this.position.getX();
 	}
 
-	public void setCentreX(int centreX) {
+	public void setPositionX(int centreX) {
 
 		this.position.setX(centreX);
 	}
 
-	public int getCentreY() {
+	public int getPositionY() {
 
 		return this.position.getY();
 	}
 
-	public void setCentreY(int centreY) {
+	public void setPositionY(int centreY) {
 
 		this.position.setY(centreY);
 	}
@@ -53,6 +53,16 @@ public class TronPlayer extends Player {
 
 		return Collections.unmodifiableList(this.path);
 	}
+	
+	@Override
+	public int hashCode() {
+
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((path == null) ? 0 : path.hashCode());
+		result = prime * result + ((position == null) ? 0 : position.hashCode());
+		return result;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -61,11 +71,15 @@ public class TronPlayer extends Player {
 		if (obj == null) return false;
 		if (getClass() != obj.getClass()) return false;
 		TronPlayer other = (TronPlayer) obj;
-		if (getColor() == null) {
-			return other.getColor() == null;
+		if (path == null) {
+			if (other.path != null) return false;
 		}
-		else
-			return getColor().equals(other.getColor());
+		else if (!path.equals(other.path)) return false;
+		if (position == null) {
+			if (other.position != null) return false;
+		}
+		else if (!position.equals(other.position)) return false;
+		return true;
 	}
 
 	public boolean isInCollisionWith(TronPlayer playerB) {

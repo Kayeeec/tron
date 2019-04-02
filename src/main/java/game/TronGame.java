@@ -98,7 +98,7 @@ public class TronGame extends BasicGame {
 	private void updateTronPlayersHistory() {
 
 		for (TronPlayer player : players) {
-			player.appendPath(new Coordinate(player.getCentreX(), player.getCentreY()));
+			player.appendPath(player.getPosition().clone());
 		}
 	}
 
