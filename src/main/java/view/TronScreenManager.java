@@ -18,8 +18,15 @@ public class TronScreenManager extends BasicScreenManager implements ScreenManag
 	}
 
 	public void setUp(List<PlayerControlHandler> playerHandlers) {
+
+		setFullScreen();
 		Window w = getVc().getFullScreenWindow();
-		getWindow(w);
+
+		w.setFont(FONT);
+		w.setBackground(Color.WHITE);
+		w.setForeground(Color.RED);
+		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
+				new Point(0, 0), "null"));
 
 		for (PlayerControlHandler ph : playerHandlers) {
 			if (ph instanceof KeyListener) {
@@ -29,15 +36,6 @@ public class TronScreenManager extends BasicScreenManager implements ScreenManag
 				w.addMouseListener((MouseListener) ph);
 			}
 		}
-	}
-
-	private void getWindow(Window w) {
-		setFullScreen();
-		w.setFont(FONT);
-		w.setBackground(Color.WHITE);
-		w.setForeground(Color.RED);
-		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
-				new Point(0, 0), "null"));
 	}
 
 }
