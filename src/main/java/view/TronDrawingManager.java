@@ -8,19 +8,17 @@ import java.util.List;
 
 public class TronDrawingManager implements DrawingManager {
 
-	private final ScreenManager screenManager;
 	private final List<TronPlayer> players;
 
-	public TronDrawingManager(ScreenManager screenManager, List<TronPlayer> players) {
+	public TronDrawingManager(List<TronPlayer> players) {
 
-		this.screenManager = screenManager;
 		this.players = players;
 	}
 
-	public void draw(Graphics2D g) {
+	public void draw(Graphics2D g, int screenWidth, int screenHeight) {
 
 		g.setColor(Color.BLACK);
-		g.fillRect(0, 0, screenManager.getWidth(), screenManager.getHeight());
+		g.fillRect(0, 0, screenWidth, screenHeight);
 
 		for (TronPlayer player : players) {
 			for (Coordinate coordinate : player.getPath()) {

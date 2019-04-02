@@ -49,7 +49,7 @@ public class TronGame extends BasicGame {
 	@Override
 	public void initializePresentation() {
 		screenManager = new TronScreenManager();
-		drawingManager = new TronDrawingManager(screenManager, players);
+		drawingManager = new TronDrawingManager(players);
 		screenManager.setUp(playerHandlers);
 	}
 
@@ -111,7 +111,7 @@ public class TronGame extends BasicGame {
 	public void draw() {
 
 		Graphics2D g = screenManager.getGraphics();
-		drawingManager.draw(g);
+		drawingManager.draw(g, screenManager.getWidth(), screenManager.getHeight());
 		g.dispose();
 		screenManager.update();
 
