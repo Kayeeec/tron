@@ -1,12 +1,17 @@
 package view;
 
+import controller.PlayerControlHandler;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.util.List;
 
 import javax.swing.JFrame;
 
 public abstract class BasicScreenManager implements ScreenManager {
+
+	private static final Font FONT = new Font("Arial", Font.PLAIN, 20);
 
 	private final GraphicsDevice vc;
 
@@ -130,4 +135,15 @@ public abstract class BasicScreenManager implements ScreenManager {
 		}
 	}
 
+	@Override
+	public void setUp(List<PlayerControlHandler> playerHandlers) {
+		setFullScreen();
+		Window w = getVc().getFullScreenWindow();
+
+		w.setFont(FONT);
+		w.setBackground(Color.BLACK);
+		w.setForeground(Color.RED);
+		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
+				new Point(0, 0), "null"));
+	}
 }
