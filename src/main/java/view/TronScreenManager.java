@@ -2,17 +2,15 @@ package view;
 
 import controller.PlayerControlHandler;
 
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
 public class TronScreenManager extends BasicScreenManager implements ScreenManager {
 
-	private static final Font font = new Font("Arial", Font.PLAIN, 20);
+	private static final Font FONT = new Font("Arial", Font.PLAIN, 20);
 
 	public TronScreenManager() {
 
@@ -20,15 +18,8 @@ public class TronScreenManager extends BasicScreenManager implements ScreenManag
 	}
 
 	public void setUp(List<PlayerControlHandler> playerHandlers) {
-
-		setFullScreen();
-		Window w = vc.getFullScreenWindow();
-
-		w.setFont(font);
-		w.setBackground(Color.WHITE);
-		w.setForeground(Color.RED);
-		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
-				new Point(0, 0), "null"));
+		Window w = getVc().getFullScreenWindow();
+		getWindow(w);
 
 		for (PlayerControlHandler ph : playerHandlers) {
 			if (ph instanceof KeyListener) {
@@ -38,6 +29,15 @@ public class TronScreenManager extends BasicScreenManager implements ScreenManag
 				w.addMouseListener((MouseListener) ph);
 			}
 		}
+	}
+
+	private void getWindow(Window w) {
+		setFullScreen();
+		w.setFont(FONT);
+		w.setBackground(Color.WHITE);
+		w.setForeground(Color.RED);
+		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
+				new Point(0, 0), "null"));
 	}
 
 }
