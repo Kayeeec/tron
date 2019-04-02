@@ -1,11 +1,11 @@
 package model;
 
-public class TwoDimensionalCoordinates extends Coordinates {
+public class Coordinate {
 
 	private int X;
 	private int Y;
 
-	public TwoDimensionalCoordinates(int x, int y) {
+	public Coordinate(int x, int y) {
 
 		this.X = x;
 		this.Y = y;
@@ -31,7 +31,7 @@ public class TwoDimensionalCoordinates extends Coordinates {
 		Y = y;
 	}
 
-	public boolean equals(TwoDimensionalCoordinates another) {
+	public boolean equals(Coordinate another) {
 		return this.X == another.getX() && this.Y == another.getY();
 	}
 

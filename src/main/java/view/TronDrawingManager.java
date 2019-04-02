@@ -1,7 +1,7 @@
 package view;
 
 import model.TronPlayer;
-import model.TwoDimensionalCoordinates;
+import model.Coordinate;
 
 import java.awt.*;
 import java.util.List;
@@ -23,7 +23,7 @@ public class TronDrawingManager implements DrawingManager {
 		g.fillRect(0, 0, screenManager.getWidth(), screenManager.getHeight());
 
 		for (TronPlayer player : players) {
-			for (TwoDimensionalCoordinates coordinate : player.getPath()) {
+			for (Coordinate coordinate : player.getPath()) {
 				g.setColor(player.getColor());
 				g.fillRect(coordinate.getX(), coordinate.getY(), 10, 10);
 			}

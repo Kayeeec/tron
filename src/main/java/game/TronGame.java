@@ -12,9 +12,7 @@ import controller.MouseEventHandler;
 import controller.PlayerControlHandler;
 import enums.Direction;
 import model.TronPlayer;
-import model.TwoDimensionalCoordinates;
-import view.DrawingManager;
-import view.ScreenManager;
+import model.Coordinate;
 import view.TronDrawingManager;
 import view.TronScreenManager;
 
@@ -33,8 +31,8 @@ public class TronGame extends BasicGame {
 		players = new LinkedList<TronPlayer>();
 		playerHandlers = new LinkedList<PlayerControlHandler>();
 
-		TronPlayer player1 = new TronPlayer(new TwoDimensionalCoordinates(40, 40), Direction.RIGHT, Color.RED);
-		TronPlayer player2 = new TronPlayer(new TwoDimensionalCoordinates(600, 440), Direction.DOWN, Color.YELLOW);
+		TronPlayer player1 = new TronPlayer(new Coordinate(40, 40), Direction.RIGHT, Color.RED);
+		TronPlayer player2 = new TronPlayer(new Coordinate(600, 440), Direction.DOWN, Color.YELLOW);
 
 		players.add(player1);
 		players.add(player2);
@@ -100,7 +98,7 @@ public class TronGame extends BasicGame {
 	private void updateTronPlayersHistory() {
 
 		for (TronPlayer player : players) {
-			player.appendPath(new TwoDimensionalCoordinates(player.getCentreX(), player.getCentreY()));
+			player.appendPath(new Coordinate(player.getCentreX(), player.getCentreY()));
 		}
 	}
 

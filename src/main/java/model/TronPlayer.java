@@ -9,17 +9,17 @@ import java.util.List;
 
 public class TronPlayer extends Player {
 
-	private TwoDimensionalCoordinates position;
+	private Coordinate position;
 
-	private final List<TwoDimensionalCoordinates> path = new ArrayList<TwoDimensionalCoordinates>();
+	private final List<Coordinate> path = new ArrayList<Coordinate>();
 
-	public TronPlayer(TwoDimensionalCoordinates coordinate, Direction direction, Color color) {
+	public TronPlayer(Coordinate coordinate, Direction direction, Color color) {
 
 		super(color, direction);
 		this.position = coordinate;
 	}
 
-	public TwoDimensionalCoordinates getPosition() {
+	public Coordinate getPosition() {
 
 		return this.position;
 	}
@@ -44,12 +44,12 @@ public class TronPlayer extends Player {
 		this.position.setY(centreY);
 	}
 
-	public void appendPath(TwoDimensionalCoordinates coordinate) {
+	public void appendPath(Coordinate coordinate) {
 
 		this.path.add(coordinate);
 	}
 
-	public List<TwoDimensionalCoordinates> getPath() {
+	public List<Coordinate> getPath() {
 
 		return Collections.unmodifiableList(this.path);
 	}
@@ -70,7 +70,7 @@ public class TronPlayer extends Player {
 
 	public boolean isInCollisionWith(TronPlayer playerB) {
 
-		for (TwoDimensionalCoordinates coord : playerB.getPath()) {
+		for (Coordinate coord : playerB.getPath()) {
 			if (coord.equals(this.getPosition())) {
 				return true;
 			}
