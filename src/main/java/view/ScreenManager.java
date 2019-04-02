@@ -1,6 +1,7 @@
 package view;
 
 import controller.PlayerControlHandler;
+import model.ScreenDimensions;
 
 import java.awt.*;
 import java.util.List;
@@ -11,9 +12,7 @@ public interface ScreenManager {
 
 	void update();
 
-	int getWidth();
-
-	int getHeight();
+	ScreenDimensions getScreenDimensions();
 
 	void restoreScreen();
 

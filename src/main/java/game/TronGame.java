@@ -50,7 +50,7 @@ public class TronGame extends BasicGame {
 	public void initializePresentation() {
 
 		screenManager = new TronScreenManager();
-		drawingManager = new TronDrawingManager(screenManager, players);
+		drawingManager = new TronDrawingManager(screenManager.getScreenDimensions(), players);
 		screenManager.setUp(playerHandlers);
 
 	}
@@ -64,7 +64,7 @@ public class TronGame extends BasicGame {
 	private void updateTronPlayerPositions() {
 
 		for (TronPlayer player : players) {
-			player.updatePosition(MOVE_AMT, screenManager.getHeight(), screenManager.getWidth());
+			player.updatePosition(MOVE_AMT, screenManager.getScreenDimensions());
 		}
 
 	}

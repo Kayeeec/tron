@@ -93,7 +93,7 @@ public class TronPlayer extends Player {
 		return false;
 	}
 
-	public void updatePosition(int moveAmt, int maxHeight, int maxWidth) {
+	public void updatePosition(int moveAmt, ScreenDimensions maxDimensions) {
 
 		switch (this.getCurrentDirection()) {
 		case UP:
@@ -101,21 +101,21 @@ public class TronPlayer extends Player {
 				this.position.setY(this.position.getY() - moveAmt);
 			}
 			else {
-				this.position.setY(maxHeight);
+				this.position.setY(maxDimensions.getHeight());
 			}
 			break;
 		case RIGHT:
-			this.position.setX((this.position.getX() + moveAmt) % maxWidth);
+			this.position.setX((this.position.getX() + moveAmt) % maxDimensions.getWidth());
 			break;
 		case DOWN:
-			this.position.setY((this.position.getY() + moveAmt) % maxHeight);
+			this.position.setY((this.position.getY() + moveAmt) % maxDimensions.getHeight());
 			break;
 		case LEFT:
 			if (this.position.getX() > 0) {
 				this.position.setX(this.position.getX() - moveAmt);
 			}
 			else {
-				this.position.setX(maxWidth);
+				this.position.setX(maxDimensions.getWidth());
 			}
 			break;
 		}

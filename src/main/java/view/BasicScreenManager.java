@@ -1,5 +1,7 @@
 package view;
 
+import model.ScreenDimensions;
+
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -9,6 +11,8 @@ import javax.swing.JFrame;
 public abstract class BasicScreenManager implements ScreenManager {
 
 	private final GraphicsDevice vc;
+
+	private ScreenDimensions screenDimensions;
 
 	private static final DisplayMode[] DISPLAY_MODES = {
 			new DisplayMode(1680, 1050, 32, 0),
@@ -24,33 +28,27 @@ public abstract class BasicScreenManager implements ScreenManager {
 
 		GraphicsEnvironment e = GraphicsEnvironment.getLocalGraphicsEnvironment();
 		vc = e.getDefaultScreenDevice();
+		setUpScreenDimensions();
+	}
+
+	private void setUpScreenDimensions() {
+		setFullScreen();
+		Window w = vc.getFullScreenWindow();
+		if (w != null) {
+			this.screenDimensions = new ScreenDimensions(w.getWidth(), w.getHeight());
+		} else {
+			this.screenDimensions = new ScreenDimensions(0, 0);
+		}
+	}
+
+	@Override
+	public ScreenDimensions getScreenDimensions() {
+		return screenDimensions;
 	}
 
 	public GraphicsDevice getVc() {
 
 		return vc;
-	}
-
-	public int getWidth() {
-
-		Window w = vc.getFullScreenWindow();
-		if (w != null) {
-			return w.getWidth();
-		}
-
-		return 0;
-
-	}
-
-	public int getHeight() {
-
-		Window w = vc.getFullScreenWindow();
-		if (w != null) {
-			return w.getHeight();
-		}
-
-		return 0;
-
 	}
 
 	public void restoreScreen() {
