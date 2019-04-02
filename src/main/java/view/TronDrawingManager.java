@@ -8,10 +8,10 @@ import java.util.List;
 
 public class TronDrawingManager implements DrawingManager {
 
-	private final TronScreenManager screenManager;
+	private final ScreenManager screenManager;
 	private final List<TronPlayer> players;
 
-	public TronDrawingManager(TronScreenManager screenManager, List<TronPlayer> players) {
+	public TronDrawingManager(ScreenManager screenManager, List<TronPlayer> players) {
 
 		this.screenManager = screenManager;
 		this.players = players;

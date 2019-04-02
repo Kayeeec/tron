@@ -5,7 +5,7 @@ import view.ScreenManager;
 
 public abstract class BasicGame implements Game {
 	protected ScreenManager screenManager;
-	protected DrawingManager drawManager;
+	protected DrawingManager drawingManager;
 
 	private boolean running;
 
