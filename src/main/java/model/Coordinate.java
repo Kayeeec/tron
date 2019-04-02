@@ -1,6 +1,6 @@
 package model;
 
-public class Coordinate {
+public class Coordinate implements Cloneable {
 
 	private int X;
 	private int Y;
@@ -33,6 +33,10 @@ public class Coordinate {
 
 	public boolean equals(Coordinate another) {
 		return this.X == another.getX() && this.Y == another.getY();
+	}
+	
+	public Coordinate clone() {
+		return new Coordinate(X, Y);
 	}
 
 }
