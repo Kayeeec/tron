@@ -17,16 +17,11 @@ public class TronScreenManager extends BasicScreenManager implements ScreenManag
 		super();
 	}
 
+	@Override
 	public void setUp(List<PlayerControlHandler> playerHandlers) {
+		super.setUp(playerHandlers);
 
-		setFullScreen();
 		Window w = getVc().getFullScreenWindow();
-
-		w.setFont(FONT);
-		w.setBackground(Color.WHITE);
-		w.setForeground(Color.RED);
-		w.setCursor(w.getToolkit().createCustomCursor(new BufferedImage(3, 3, BufferedImage.TYPE_INT_ARGB),
-				new Point(0, 0), "null"));
 
 		for (PlayerControlHandler ph : playerHandlers) {
 			if (ph instanceof KeyListener) {

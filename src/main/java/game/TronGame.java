@@ -23,13 +23,13 @@ public class TronGame extends BasicGame {
 	private static final int MOVE_AMT = 5;
 
 	public TronGame() {
-
+		super();
 	}
 
 	public void initializePlayers() {
 
-		players = new LinkedList<TronPlayer>();
-		playerHandlers = new LinkedList<PlayerControlHandler>();
+		players = new LinkedList<>();
+		playerHandlers = new LinkedList<>();
 
 		TronPlayer player1 = new TronPlayer(new Coordinate(40, 40), Direction.RIGHT, Color.RED);
 		TronPlayer player2 = new TronPlayer(new Coordinate(600, 440), Direction.DOWN, Color.YELLOW);
@@ -48,11 +48,9 @@ public class TronGame extends BasicGame {
 
 	@Override
 	public void initializePresentation() {
-
 		screenManager = new TronScreenManager();
 		drawingManager = new TronDrawingManager(screenManager, players);
 		screenManager.setUp(playerHandlers);
-
 	}
 
 	@Override
